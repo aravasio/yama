@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ShowsListViewController.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ShowsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
 
 }
 

@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F72206281E0016E3CC /* AppDelegate.swift */; };
-		579E29FA2206281E0016E3CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F92206281E0016E3CC /* ViewController.swift */; };
 		579E29FD2206281E0016E3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FB2206281E0016E3CC /* Main.storyboard */; };
 		579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FE2206281F0016E3CC /* Assets.xcassets */; };
 		579E2A022206281F0016E3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E2A002206281F0016E3CC /* LaunchScreen.storyboard */; };
+		579E2A0B220629670016E3CC /* ShowsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E2A0A220629670016E3CC /* ShowsListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		579E29F42206281E0016E3CC /* yama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F72206281E0016E3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		579E29F92206281E0016E3CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		579E29FC2206281E0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		579E29FE2206281F0016E3CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		579E2A012206281F0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		579E2A032206281F0016E3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		579E2A0A220629670016E3CC /* ShowsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,22 @@
 		579E29F62206281E0016E3CC /* yama */ = {
 			isa = PBXGroup;
 			children = (
+				579E2A09220629530016E3CC /* ShowListing */,
 				579E29F72206281E0016E3CC /* AppDelegate.swift */,
-				579E29F92206281E0016E3CC /* ViewController.swift */,
 				579E29FB2206281E0016E3CC /* Main.storyboard */,
 				579E29FE2206281F0016E3CC /* Assets.xcassets */,
 				579E2A002206281F0016E3CC /* LaunchScreen.storyboard */,
 				579E2A032206281F0016E3CC /* Info.plist */,
 			);
 			path = yama;
+			sourceTree = "<group>";
+		};
+		579E2A09220629530016E3CC /* ShowListing */ = {
+			isa = PBXGroup;
+			children = (
+				579E2A0A220629670016E3CC /* ShowsListViewController.swift */,
+			);
+			path = ShowListing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				579E29FA2206281E0016E3CC /* ViewController.swift in Sources */,
 				579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */,
+				579E2A0B220629670016E3CC /* ShowsListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,13 +291,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YWLL7435WK;
+				DEVELOPMENT_TEAM = B8V5WGN4V6;
 				INFOPLIST_FILE = yama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alejandroravasio.yama;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aleravasio.yama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,13 +309,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YWLL7435WK;
+				DEVELOPMENT_TEAM = B8V5WGN4V6;
 				INFOPLIST_FILE = yama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alejandroravasio.yama;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aleravasio.yama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
