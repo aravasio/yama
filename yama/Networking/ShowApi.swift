@@ -13,6 +13,9 @@ import Moya
 
 enum ShowApi: TargetType {
     
+    /// All cases are entirely experimental in nature. I'm messing around with different TMDb endpoints to
+    /// check out which ones I'm more comfortable with for the purpose of the project.
+    /// They might be implemented as endpoints, but not necessarily consumed anywhere else in the app.
     case popular
     case topRated(page: Int)
     case newShows(page: Int)

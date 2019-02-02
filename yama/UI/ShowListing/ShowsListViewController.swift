@@ -10,18 +10,17 @@ import UIKit
 
 class ShowsListViewController: UIViewController {
 
+    fileprivate var mySubscriptions: [Show] = []
+    fileprivate var popularShows: [Show] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        API.getPopularShows(page: 1) { shows in
+        API.getPopularShows() { shows in
             shows.forEach {
                 print($0.title)
                 print($0.releaseDate)
             }
         }
     }
-    
-    
-
 }
-
