@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		575F9A9F220633500016E35E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 575F9A9E220633500016E35E /* Info.plist */; };
 		579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F72206281E0016E3CC /* AppDelegate.swift */; };
 		579E29FD2206281E0016E3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FB2206281E0016E3CC /* Main.storyboard */; };
 		579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FE2206281F0016E3CC /* Assets.xcassets */; };
@@ -18,12 +19,12 @@
 /* Begin PBXFileReference section */
 		23599D9F005C761AD6C270E4 /* Pods-yama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yama.release.xcconfig"; path = "Pods/Target Support Files/Pods-yama/Pods-yama.release.xcconfig"; sourceTree = "<group>"; };
 		4B91EAE945712CC4FED3A423 /* Pods_yama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		575F9A9E220633500016E35E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		579E29F42206281E0016E3CC /* yama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F72206281E0016E3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		579E29FC2206281E0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		579E29FE2206281F0016E3CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		579E2A012206281F0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		579E2A032206281F0016E3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		579E2A0A220629670016E3CC /* ShowsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsListViewController.swift; sourceTree = "<group>"; };
 		793369342D5995961F16DE69 /* Pods-yama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yama.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yama/Pods-yama.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,6 +41,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		575F9A9D2206332B0016E35E /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				575F9A9E220633500016E35E /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		575F9AA02206336B0016E35E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				579E29FE2206281F0016E3CC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		579E29EB2206281E0016E3CC = {
 			isa = PBXGroup;
 			children = (
@@ -61,13 +78,13 @@
 		579E29F62206281E0016E3CC /* yama */ = {
 			isa = PBXGroup;
 			children = (
+				575F9AA02206336B0016E35E /* Resources */,
+				575F9A9D2206332B0016E35E /* Supporting */,
 				579E2A0C22062E320016E3CC /* Networking */,
 				579E2A09220629530016E3CC /* ShowListing */,
 				579E29F72206281E0016E3CC /* AppDelegate.swift */,
 				579E29FB2206281E0016E3CC /* Main.storyboard */,
-				579E29FE2206281F0016E3CC /* Assets.xcassets */,
 				579E2A002206281F0016E3CC /* LaunchScreen.storyboard */,
-				579E2A032206281F0016E3CC /* Info.plist */,
 			);
 			path = yama;
 			sourceTree = "<group>";
@@ -164,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				575F9A9F220633500016E35E /* Info.plist in Resources */,
 				579E2A022206281F0016E3CC /* LaunchScreen.storyboard in Resources */,
 				579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */,
 				579E29FD2206281E0016E3CC /* Main.storyboard in Resources */,
