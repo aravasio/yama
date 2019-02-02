@@ -12,9 +12,12 @@
 		579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FE2206281F0016E3CC /* Assets.xcassets */; };
 		579E2A022206281F0016E3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E2A002206281F0016E3CC /* LaunchScreen.storyboard */; };
 		579E2A0B220629670016E3CC /* ShowsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E2A0A220629670016E3CC /* ShowsListViewController.swift */; };
+		D139723C1DE61824FC2A7D3B /* Pods_yama.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91EAE945712CC4FED3A423 /* Pods_yama.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23599D9F005C761AD6C270E4 /* Pods-yama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yama.release.xcconfig"; path = "Pods/Target Support Files/Pods-yama/Pods-yama.release.xcconfig"; sourceTree = "<group>"; };
+		4B91EAE945712CC4FED3A423 /* Pods_yama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F42206281E0016E3CC /* yama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F72206281E0016E3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		579E29FC2206281E0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		579E2A012206281F0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		579E2A032206281F0016E3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		579E2A0A220629670016E3CC /* ShowsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsListViewController.swift; sourceTree = "<group>"; };
+		793369342D5995961F16DE69 /* Pods-yama.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yama.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yama/Pods-yama.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D139723C1DE61824FC2A7D3B /* Pods_yama.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				579E29F62206281E0016E3CC /* yama */,
 				579E29F52206281E0016E3CC /* Products */,
+				6F7F6E15E97293601C93DD93 /* Pods */,
+				6A3AAFBFB57D3EB7D918DF3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +87,23 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		6A3AAFBFB57D3EB7D918DF3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B91EAE945712CC4FED3A423 /* Pods_yama.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F7F6E15E97293601C93DD93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				793369342D5995961F16DE69 /* Pods-yama.debug.xcconfig */,
+				23599D9F005C761AD6C270E4 /* Pods-yama.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -87,9 +111,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 579E2A062206281F0016E3CC /* Build configuration list for PBXNativeTarget "yama" */;
 			buildPhases = (
+				6E81EC9D785C9398864ADA1A /* [CP] Check Pods Manifest.lock */,
 				579E29F02206281E0016E3CC /* Sources */,
 				579E29F12206281E0016E3CC /* Frameworks */,
 				579E29F22206281E0016E3CC /* Resources */,
+				09C0E9140FBAF9BDE891C8E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,6 +171,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09C0E9140FBAF9BDE891C8E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-yama/Pods-yama-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yama/Pods-yama-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E81EC9D785C9398864ADA1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-yama-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		579E29F02206281E0016E3CC /* Sources */ = {
@@ -296,11 +367,13 @@
 		};
 		579E2A072206281F0016E3CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 793369342D5995961F16DE69 /* Pods-yama.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8V5WGN4V6;
 				INFOPLIST_FILE = yama/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,11 +387,13 @@
 		};
 		579E2A082206281F0016E3CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23599D9F005C761AD6C270E4 /* Pods-yama.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8V5WGN4V6;
 				INFOPLIST_FILE = yama/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
