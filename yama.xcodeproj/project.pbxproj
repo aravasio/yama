@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		575F9A9F220633500016E35E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 575F9A9E220633500016E35E /* Info.plist */; };
+		575F9AA2220633DC0016E35E /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AA1220633DC0016E35E /* Show.swift */; };
+		575F9AA522063BFD0016E35E /* APIResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AA422063BFD0016E35E /* APIResults.swift */; };
+		575F9AA722063CB00016E35E /* VideoResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AA622063CB00016E35E /* VideoResults.swift */; };
+		575F9AAA22063CF90016E35E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AA922063CF90016E35E /* API.swift */; };
+		575F9AAC22063D060016E35E /* ShowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAB22063D060016E35E /* ShowApi.swift */; };
+		575F9AAE22063D170016E35E /* MockApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAD22063D170016E35E /* MockApi.swift */; };
 		579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F72206281E0016E3CC /* AppDelegate.swift */; };
 		579E29FD2206281E0016E3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FB2206281E0016E3CC /* Main.storyboard */; };
 		579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FE2206281F0016E3CC /* Assets.xcassets */; };
@@ -20,6 +25,12 @@
 		23599D9F005C761AD6C270E4 /* Pods-yama.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yama.release.xcconfig"; path = "Pods/Target Support Files/Pods-yama/Pods-yama.release.xcconfig"; sourceTree = "<group>"; };
 		4B91EAE945712CC4FED3A423 /* Pods_yama.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yama.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		575F9A9E220633500016E35E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		575F9AA1220633DC0016E35E /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		575F9AA422063BFD0016E35E /* APIResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResults.swift; sourceTree = "<group>"; };
+		575F9AA622063CB00016E35E /* VideoResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResults.swift; sourceTree = "<group>"; };
+		575F9AA922063CF90016E35E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		575F9AAB22063D060016E35E /* ShowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowApi.swift; sourceTree = "<group>"; };
+		575F9AAD22063D170016E35E /* MockApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApi.swift; sourceTree = "<group>"; };
 		579E29F42206281E0016E3CC /* yama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F72206281E0016E3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		579E29FC2206281E0016E3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +68,26 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		575F9AA822063CE20016E35E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				575F9AA1220633DC0016E35E /* Show.swift */,
+				575F9AA422063BFD0016E35E /* APIResults.swift */,
+				575F9AA622063CB00016E35E /* VideoResults.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		575F9AAF220657CA0016E35E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				579E2A09220629530016E3CC /* ShowListing */,
+				579E29FB2206281E0016E3CC /* Main.storyboard */,
+				579E2A002206281F0016E3CC /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		579E29EB2206281E0016E3CC = {
 			isa = PBXGroup;
 			children = (
@@ -78,13 +109,12 @@
 		579E29F62206281E0016E3CC /* yama */ = {
 			isa = PBXGroup;
 			children = (
+				575F9AAF220657CA0016E35E /* UI */,
+				575F9AA822063CE20016E35E /* Models */,
 				575F9AA02206336B0016E35E /* Resources */,
 				575F9A9D2206332B0016E35E /* Supporting */,
 				579E2A0C22062E320016E3CC /* Networking */,
-				579E2A09220629530016E3CC /* ShowListing */,
 				579E29F72206281E0016E3CC /* AppDelegate.swift */,
-				579E29FB2206281E0016E3CC /* Main.storyboard */,
-				579E2A002206281F0016E3CC /* LaunchScreen.storyboard */,
 			);
 			path = yama;
 			sourceTree = "<group>";
@@ -100,6 +130,9 @@
 		579E2A0C22062E320016E3CC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				575F9AA922063CF90016E35E /* API.swift */,
+				575F9AAB22063D060016E35E /* ShowApi.swift */,
+				575F9AAD22063D170016E35E /* MockApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -181,7 +214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				575F9A9F220633500016E35E /* Info.plist in Resources */,
 				579E2A022206281F0016E3CC /* LaunchScreen.storyboard in Resources */,
 				579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */,
 				579E29FD2206281E0016E3CC /* Main.storyboard in Resources */,
@@ -242,6 +274,12 @@
 			files = (
 				579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */,
 				579E2A0B220629670016E3CC /* ShowsListViewController.swift in Sources */,
+				575F9AA722063CB00016E35E /* VideoResults.swift in Sources */,
+				575F9AA2220633DC0016E35E /* Show.swift in Sources */,
+				575F9AAE22063D170016E35E /* MockApi.swift in Sources */,
+				575F9AAA22063CF90016E35E /* API.swift in Sources */,
+				575F9AA522063BFD0016E35E /* APIResults.swift in Sources */,
+				575F9AAC22063D060016E35E /* ShowApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8V5WGN4V6;
-				INFOPLIST_FILE = yama/Info.plist;
+				INFOPLIST_FILE = yama/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8V5WGN4V6;
-				INFOPLIST_FILE = yama/Info.plist;
+				INFOPLIST_FILE = yama/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

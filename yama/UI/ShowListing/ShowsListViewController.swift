@@ -12,7 +12,16 @@ class ShowsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        API.getPopularShows(page: 1) { shows in
+            shows.forEach {
+                print($0.title)
+                print($0.releaseDate)
+            }
+        }
     }
+    
+    
 
 }
 
