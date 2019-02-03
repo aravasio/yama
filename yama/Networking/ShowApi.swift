@@ -18,7 +18,6 @@ enum ShowApi: TargetType {
     /// They might be implemented as endpoints, but not necessarily consumed anywhere else in the app.
     case popular
     case topRated(page: Int)
-    case newShows(page: Int)
     
     var baseURL: URL {
         guard let url = URL(string: "https://api.themoviedb.org/3/tv") else { fatalError("baseURL could not be configured") }
@@ -31,14 +30,12 @@ enum ShowApi: TargetType {
             return "/popular"
         case .topRated:
             return "/top_rated"
-        case .newShows:
-            return "/now_playing"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .popular, .topRated, .newShows:
+        case .popular, .topRated:
             return .get
         }
     }
@@ -47,21 +44,21 @@ enum ShowApi: TargetType {
         switch self {
         case .popular:
             return ["api_key": API.apiKey]
-        case .topRated(let page), .newShows(let page):
+        case .topRated(let page):
             return ["page": page, "api_key": API.apiKey]
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .popular, .topRated, .newShows:
+        case .popular, .topRated:
             return URLEncoding.queryString
         }
     }
     
     var task: Task {
         switch self {
-        case .popular, .topRated, .newShows:
+        case .popular, .topRated:
             return .requestParameters(parameters: self.parameters ?? [:], encoding: self.parameterEncoding)
         }
     }

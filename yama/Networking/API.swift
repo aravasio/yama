@@ -50,8 +50,8 @@ class API {
      Fetch the top-rated shows.
      
      - Parameters:
-         - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
-         - completion: code to be executed on a succesful request.
+     - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
+     - completion: code to be executed on a succesful request.
      */
     static func getTopRatedShows(page: Int, completion: @escaping ShowsResponse) {
         let target = ShowApi.topRated(page: page)
