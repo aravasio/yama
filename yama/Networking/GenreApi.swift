@@ -1,5 +1,5 @@
 //
-//  ShowApi.swift
+//  MockApi.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -7,58 +7,51 @@
 //
 
 import Foundation
-
-import Foundation
 import Moya
 
-enum ShowApi: TargetType {
+enum GenreApi: TargetType {
     
     /// All cases are entirely experimental in nature. I'm messing around with different TMDb endpoints to
     /// check out which ones I'm more comfortable with for the purpose of the project.
     /// They might be implemented as endpoints, but not necessarily consumed anywhere else in the app.
-    case popular
-    case topRated(page: Int)
+    case list
     
     var baseURL: URL {
-        guard let url = URL(string: "https://api.themoviedb.org/3/tv") else { fatalError("baseURL could not be configured") }
+        guard let url = URL(string: "https://api.themoviedb.org/3/genre/tv") else { fatalError("baseURL could not be configured") }
         return url
     }
     
     var path: String {
         switch self {
-        case .popular:
-            return "/popular"
-        case .topRated:
-            return "/top_rated"
+        case .list:
+            return "/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .popular, .topRated:
+        case .list:
             return .get
         }
     }
     
     var parameters: [String : Any]? {
         switch self {
-        case .popular:
+        case .list:
             return ["api_key": API.apiKey, "language": API.language]
-        case .topRated(let page):
-            return ["page": page, "api_key": API.apiKey, "language": API.language]
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .popular, .topRated:
+        case .list:
             return URLEncoding.queryString
         }
     }
     
     var task: Task {
         switch self {
-        case .popular, .topRated:
+        case .list:
             return .requestParameters(parameters: self.parameters ?? [:], encoding: self.parameterEncoding)
         }
     }

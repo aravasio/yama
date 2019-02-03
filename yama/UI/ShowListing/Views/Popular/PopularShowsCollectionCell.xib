@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PopularShowsCollectionCell" customModule="yama" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="156"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PSz-Xr-awC">
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="156"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-mc-vRD">
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="156"/>
+                    <color key="backgroundColor" red="0.035294117647058823" green="0.098039215686274508" blue="0.12549019607843137" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="6OW-dK-xQz"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supergirl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-Fs-b5n">
+                    <rect key="frame" x="16" y="112" width="303" height="29"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <color key="textColor" red="0.88235294117647056" green="0.96078431372549022" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADVENTURE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-Td-NCO">
+                    <rect key="frame" x="229" y="8" width="100" height="24"/>
+                    <color key="backgroundColor" red="0.11764705882352941" green="0.16862745098039217" blue="0.19215686274509802" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="j3S-Bw-JRQ"/>
+                        <constraint firstAttribute="height" constant="24" id="kB9-qx-WM4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <color key="textColor" red="0.88235294119999996" green="0.96078431369999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="i3k-Fs-b5n" secondAttribute="trailing" constant="16" id="0Az-jg-9ao"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PSz-Xr-awC" secondAttribute="bottom" id="4Kk-wC-yBr"/>
+                <constraint firstItem="i3k-Fs-b5n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="7wA-A6-oCH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PSz-Xr-awC" secondAttribute="trailing" id="7xP-8I-oRL"/>
+                <constraint firstItem="PSz-Xr-awC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8CN-1W-1Ok"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aHC-Td-NCO" secondAttribute="trailing" constant="6" id="JUo-KA-XJo"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SU0-Ov-AKV"/>
+                <constraint firstItem="PSz-Xr-awC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Tlu-iW-ohG"/>
+                <constraint firstItem="aHC-Td-NCO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="VUQ-OM-D11"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="bN6-mc-vRD" secondAttribute="leading" id="cOF-wP-ijI"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="cfB-Y5-oU7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="i3k-Fs-b5n" secondAttribute="bottom" constant="15" id="qMi-nr-aiS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="bN6-mc-vRD" secondAttribute="top" id="wqE-ig-EAo"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="blueFilterView" destination="bN6-mc-vRD" id="H7F-Es-MU1"/>
+                <outlet property="categoryLabel" destination="aHC-Td-NCO" id="m8y-1C-uMH"/>
+                <outlet property="imageView" destination="PSz-Xr-awC" id="h1e-QZ-Xgt"/>
+                <outlet property="titleLabel" destination="i3k-Fs-b5n" id="JrX-6r-cxU"/>
+            </connections>
+            <point key="canvasLocation" x="232.80000000000001" y="-181.25937031484258"/>
+        </view>
+    </objects>
+</document>

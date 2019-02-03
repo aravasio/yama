@@ -17,6 +17,7 @@ struct Show: Codable {
     let releaseDate: String
     let rating: Double
     let overview: String
+    let genres: [Int]
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -27,6 +28,7 @@ struct Show: Codable {
         case releaseDate = "first_air_date"
         case rating = "vote_average"
         case overview
+        case genres = "genre_ids"
     }
 }
 

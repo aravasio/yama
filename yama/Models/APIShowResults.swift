@@ -1,5 +1,5 @@
 //
-//  APIResults.swift
+//  APIShowResults.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct APIResults: Codable {
+struct APIShowResults: Codable {
     let page: Int
     let shows: [Show]
     let results: Int

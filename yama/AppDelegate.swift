@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /// I just really want to ensure I get to fetching genres right up at the start. This is an ugly hack, but it's definitely quick.
+        let genresManager = GenresManager.shared
         return true
     }
 
