@@ -14,8 +14,6 @@ class PopularShowsCollectionCell: UICollectionViewCell {
     
     static let identifier = "PopularShowsCollectionCell"
     static let cellHeight: CGFloat = 156
-    static let cornerRadius: CGFloat = 5
-    static let fadeoutTime: TimeInterval = 0.3
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -42,10 +40,10 @@ class PopularShowsCollectionCell: UICollectionViewCell {
     
     private func configureImageView() {
         guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w300\(show.backdrop)") else { return }
-        let resource = ImageResource(downloadURL: imageUrl, cacheKey: show.title)
-        let time = PopularShowsCollectionCell.fadeoutTime
+        let resource = ImageResource(downloadURL: imageUrl, cacheKey: show.title + "backdropPath")
+        let time = Constants.imageFadeoutTime
         
-        let processor = RoundCornerImageProcessor(cornerRadius: PopularShowsCollectionCell.cornerRadius) >>
+        let processor = RoundCornerImageProcessor(cornerRadius: Constants.imageCornerRadius) >>
                         BlackWhiteProcessor()
 
         let options: KingfisherOptionsInfo = [.transition(.fade(time)),
@@ -53,8 +51,7 @@ class PopularShowsCollectionCell: UICollectionViewCell {
                        
                        
         imageView.kf.setImage(with: resource, placeholder: nil, options: options)
-        
-        imageView.layer.cornerRadius = PopularShowsCollectionCell.cornerRadius
+        imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
     }
     
@@ -62,7 +59,7 @@ class PopularShowsCollectionCell: UICollectionViewCell {
         /// We try to fetch a genre with localized text for the show, if not available, we just hide the genre label.
         if let id = show.genres.first, let genreName = GenresManager.shared.getGenre(for: id)?.name {
             categoryLabel.text = genreName
-            categoryLabel.layer.cornerRadius = PopularShowsCollectionCell.cornerRadius
+            categoryLabel.layer.cornerRadius = Constants.labelCornerRadius
             categoryLabel.layer.masksToBounds = true
             
         } else {

@@ -49,13 +49,13 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PSz-Xr-awC" secondAttribute="trailing" id="7xP-8I-oRL"/>
                 <constraint firstItem="PSz-Xr-awC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8CN-1W-1Ok"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aHC-Td-NCO" secondAttribute="trailing" constant="6" id="JUo-KA-XJo"/>
-                <constraint firstItem="bN6-mc-vRD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SU0-Ov-AKV"/>
                 <constraint firstItem="PSz-Xr-awC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Tlu-iW-ohG"/>
                 <constraint firstItem="aHC-Td-NCO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="VUQ-OM-D11"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="bN6-mc-vRD" secondAttribute="leading" id="cOF-wP-ijI"/>
-                <constraint firstItem="bN6-mc-vRD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="cfB-Y5-oU7"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="height" secondItem="PSz-Xr-awC" secondAttribute="height" id="XiW-XL-x0m"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="width" secondItem="PSz-Xr-awC" secondAttribute="width" id="f5D-fH-Hfz"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="centerX" secondItem="PSz-Xr-awC" secondAttribute="centerX" id="m3K-sZ-RxK"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="i3k-Fs-b5n" secondAttribute="bottom" constant="15" id="qMi-nr-aiS"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="bN6-mc-vRD" secondAttribute="top" id="wqE-ig-EAo"/>
+                <constraint firstItem="bN6-mc-vRD" firstAttribute="centerY" secondItem="PSz-Xr-awC" secondAttribute="centerY" id="vn2-6T-EX6"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -11,10 +11,14 @@ import UIKit
 
 extension UIColor {
     
+    //Blue
     static let iceBlue = UIColor(hexValue: "E1F5FF")
     static let darkBlue = UIColor(hexValue: "1E2B31", alpha: 0.8)
-    static let backgroundBlack = UIColor(hexValue: "1B1B1B")
     static let filterBlue = UIColor(hexValue: "091920", alpha: 0.5)
+    
+    //Black
+    static let backgroundBlack = UIColor(hexValue: "1B1B1B")
+    static let overviewBlack = UIColor(hexValue: "383838")
     
     
     /// UIColor does not provide an out-of-the-box constructor for hex values.

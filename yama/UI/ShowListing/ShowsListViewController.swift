@@ -59,7 +59,10 @@ class ShowsListViewController: UIViewController {
 
 extension ShowsListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("asdas")
+        let show = popularShows[indexPath.row]
+        let vc = ShowDetailsViewController.create(for: show)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
