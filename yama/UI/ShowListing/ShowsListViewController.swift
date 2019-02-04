@@ -49,6 +49,10 @@ class ShowsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
         searchFieldHeight.constant = 0
         searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
         
