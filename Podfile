@@ -8,6 +8,6 @@ target 'yama' do
   # Pods for yama
   pod 'Moya'
   pod 'Kingfisher'
-
+  pod 'UIImageColors'
 
 end

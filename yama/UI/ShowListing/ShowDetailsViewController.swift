@@ -17,11 +17,13 @@ class ShowDetailsViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     let minHeight: CGFloat = 57
     let maxHeight: CGFloat = 273
@@ -34,8 +36,12 @@ class ShowDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tintView.backgroundColor = .backgroundBlack
+        
+        backButton.layer.cornerRadius = backButton.frame.width / 2
+        backButton.backgroundColor = .backgroundBlack
+        
         configurePoster()
-        configureBackground()
     
         descriptionLabel.text = show.overview
         scrollView.delegate = self
@@ -43,27 +49,41 @@ class ShowDetailsViewController: UIViewController {
     
     private func configurePoster() {
         guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(show.posterPath ?? show.backdrop)") else { return }
-        let resource = ImageResource(downloadURL: imageUrl, cacheKey: show.title + "posterPath")
-        let time = Constants.imageFadeoutTime
-        let processor = RoundCornerImageProcessor(cornerRadius: Constants.imageCornerRadius)
-        let options: KingfisherOptionsInfo = [.transition(.fade(time)),
-                                              .processor(processor)]
 
-        posterImageView.kf.setImage(with: resource, placeholder: nil, options: options)
-        
+        self.posterImageView.isHidden = true
+        ImageDownloader.default.downloadImage(with: imageUrl) { result in
+            switch result {
+            case .success(let value):
+                value.image.getPredominantColors { colors in
+                    self.posterImageView.isHidden = false
+                    self.posterImageView.image = value.image
+                    
+                    // NOTE: .noir is a very expensive processing call. Sadly this means there's a small hiccup when the details load.
+                    // This is because we have no choice but to process the image locally.
+                    // Currently I just dipatch the image processing while I set the rest of the view, but this can arguably be poor UX.
+                    DispatchQueue.global().async {
+                        self.makeAndUseNoirImage(from: value.image)
+                    }
+                    self.tintView.backgroundColor = colors.primary
+                    self.tintView.alpha = 0.6
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
-    private func configureBackground() {
-        guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(show.posterPath ?? show.backdrop)") else { return }
-        let resource = ImageResource(downloadURL: imageUrl, cacheKey: show.title + "posterPath")
-        let time = Constants.imageFadeoutTime
-        let processor = RoundCornerImageProcessor(cornerRadius: Constants.imageCornerRadius)
-        let options: KingfisherOptionsInfo = [.transition(.fade(time)),
-                                              .processor(processor)]
-        
-        posterImageView.kf.setImage(with: resource, placeholder: nil, options: options)
+    private func makeAndUseNoirImage(from image: UIImage) {
+        let noir = image.noir
+        DispatchQueue.main.async {
+            self.backgroundImageView.image = noir
+            self.backgroundImageView.alpha = 0.6
+        }
     }
     
+    @IBAction func didTapBack(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     class func create(for show: Show) -> ShowDetailsViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
