@@ -56,8 +56,13 @@ class ShowsListViewController: UIViewController {
         searchFieldHeight.constant = 0
         searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
         
-        fetchPopularShows()
         configurePopularShowsView()
+        
+        API.getGenres() { genres in
+            GenresManager.shared.genres = genres
+            self.fetchPopularShows()
+        }
+
     }
     
     private func fetchPopularShows() {

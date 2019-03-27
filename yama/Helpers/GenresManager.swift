@@ -12,13 +12,7 @@ class GenresManager {
     
     static let shared = GenresManager()
     
-    private var genres: [Genre] = []
-    
-    private init() {
-        API.getGenres() { genres in
-            self.genres = genres
-        }
-    }
+    var genres: [Genre] = []
     
     func getGenre(for id: Int) -> Genre? {
         return genres.first { $0.id == id }

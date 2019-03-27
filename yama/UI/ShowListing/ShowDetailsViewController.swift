@@ -66,7 +66,6 @@ class ShowDetailsViewController: UIViewController {
         
         let strokeTextAttributes: [NSAttributedString.Key : Any] = [
             .strokeColor : UIColor.white,
-//            .foregroundColor : UIColor.darkGray,
             .strokeWidth : 3.0,
             ]
         
