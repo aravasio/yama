@@ -39,8 +39,6 @@ class API {
     
     /// Due to the tiny scope of the app, all tv requests will basically map to this.
     typealias ShowsResponse = (([Show]) -> ())
-    
-    
     typealias GenresResponse = (([Genre]) -> ())
     
     
@@ -51,8 +49,9 @@ class API {
          - completion: code to be executed on a succesful request.
      */
     static func getPopularShows(completion: @escaping ShowsResponse) {
-        let target = ShowApi.popular
-        API.sendShowRequest(to: target, completion: completion)
+        API.fetch(provider: tvShowsProvider, endpoint: ShowApi.popular, returnType: APIShowResults.self, completion: { result in
+            completion(result.shows)
+        })
     }
     
     
@@ -64,25 +63,41 @@ class API {
      - completion: code to be executed on a succesful request.
      */
     static func getTopRatedShows(page: Int, completion: @escaping ShowsResponse) {
-        let target = ShowApi.topRated(page: page)
-        API.sendShowRequest(to: target, completion: completion)
+        API.fetch(provider: tvShowsProvider, endpoint: ShowApi.topRated(page: page), returnType: APIShowResults.self, completion: { result in
+            completion(result.shows)
+        })
     }
     
-    
     /**
-     Underlying method that handles the actual request to a given target.
+     Fetch all genres for TV Shows from TMDb.
      
      - Parameters:
-         - target: The endpoint where we want to send our request.
          - completion: code to be executed on a successful request.
      */
-    fileprivate static func sendShowRequest(to target: ShowApi, completion: @escaping ShowsResponse) {
-        tvShowsProvider.request(target) { response in
+    static func getGenres(completion: @escaping GenresResponse) {
+        API.fetch(provider: tvGenresProvider, endpoint: GenreApi.list, returnType: APIGenresResults.self, completion: {
+            completion($0.genres)
+        })
+    }
+    
+    /**
+     Fetches data from a given Target using a given Moya provider.
+     
+     - Parameters:
+     - provider: A Moya provider.
+     - endpoint: A `TargetType`-enum.
+     - returnType: The type the responses should be in.
+     - completion: What to do after the successful response triggers.
+     */
+    
+    static func fetch<T: TargetType, P: MoyaProvider<T>, R: Decodable>(provider: P, endpoint: T, returnType: R.Type, completion: @escaping (R) -> ()) {
+        
+        provider.request(endpoint) { response in
             switch response {
             case let .success(result):
                 do {
-                    let results = try JSONDecoder().decode(APIShowResults.self, from: result.data)
-                    completion(results.shows)
+                    let results = try JSONDecoder().decode(returnType, from: result.data)
+                    completion(results)
                 } catch let error {
                     print(error)
                 }
@@ -93,31 +108,6 @@ class API {
                 // wasn't sent (connectivity), or no response was received (server
                 // timed out).  If the server responds with a 4xx or 5xx error, that
                 // will be sent as a ".success"-ful response.
-            }
-        }
-    }
-    
-    
-    /**
-     Fetch all genres for TV Shows from TMDb.
-     
-     - Parameters:
-         - target: The endpoint where we want to send our request.
-         - completion: code to be executed on a successful request.
-     */
-    static func getGenres(completion: @escaping GenresResponse) {
-        let target = GenreApi.list
-        tvGenresProvider.request(target) { response in
-            switch response {
-            case let .success(result):
-                do {
-                    let results = try JSONDecoder().decode(APIGenresResults.self, from: result.data)
-                    completion(results.genres)
-                } catch let error {
-                    print(error)
-                }
-                
-            case let .failure(error): print(error)
             }
         }
     }
