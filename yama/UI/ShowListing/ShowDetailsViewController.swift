@@ -21,7 +21,7 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
@@ -41,6 +41,9 @@ class ShowDetailsViewController: UIViewController {
         backButton.layer.cornerRadius = backButton.frame.width / 2
         backButton.backgroundColor = .backgroundBlack
         
+        titleLabel.text = show.title
+        ratingLabel.text = "\(show.rating) ⭐"
+        yearLabel.text = show.releaseDate
         configurePoster()
     
         descriptionLabel.text = show.overview
