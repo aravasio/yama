@@ -23,7 +23,14 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var originalLanguageLabel: UILabel!
+    @IBOutlet weak var countryOfOriginLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var overviewTitleLabel: UILabel!
+    @IBOutlet weak var originalLanguageTitleLabel: UILabel!
+    @IBOutlet weak var countryOfOriginTitleLabel: UILabel!
+    
     
     let minHeight: CGFloat = 57
     let maxHeight: CGFloat = 273
@@ -41,15 +48,32 @@ class ShowDetailsViewController: UIViewController {
         backButton.layer.cornerRadius = backButton.frame.width / 2
         backButton.backgroundColor = .backgroundBlack
         
-        titleLabel.text = show.title
-        ratingLabel.text = "\(show.rating) ⭐"
-        yearLabel.text = show.releaseDate
+        configureLabels()
         configurePoster()
     
         descriptionLabel.text = show.overview
         scrollView.delegate = self
     }
     
+    
+    private func configureLabels() {
+        titleLabel.text = show.title
+        yearLabel.text = show.releaseDate
+        originalLanguageLabel.text = show.originalLanguage
+        countryOfOriginLabel.text = show.countryOfOrigin.joined(separator: ", ")
+        ratingLabel.text = "\(show.rating) ⭐"
+        
+        
+        let strokeTextAttributes: [NSAttributedString.Key : Any] = [
+            .strokeColor : UIColor.white,
+//            .foregroundColor : UIColor.darkGray,
+            .strokeWidth : 3.0,
+            ]
+        
+        overviewTitleLabel.attributedText = NSAttributedString(string: "Overview:", attributes: strokeTextAttributes)
+        originalLanguageTitleLabel.attributedText = NSAttributedString(string: "Original language:", attributes: strokeTextAttributes)
+        countryOfOriginTitleLabel.attributedText = NSAttributedString(string: "Country of origin:", attributes: strokeTextAttributes)
+    }
     private func configurePoster() {
         guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(show.posterPath ?? show.backdrop)") else { return }
 
