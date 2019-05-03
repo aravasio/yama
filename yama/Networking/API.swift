@@ -21,7 +21,7 @@ class API {
 
     
     /// Language configuration for the requests. This will define the language in which responses will be sent.
-    static let language = "es-AR"
+    static let language = "en-US"
     
     
     /// Production providers. It provides no debug info on responses and is, thus, lean-oriented.
