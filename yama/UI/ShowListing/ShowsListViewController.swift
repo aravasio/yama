@@ -55,32 +55,14 @@ class ShowsListViewController: UIViewController {
         
         configurePopularShowsView()
         
-        let isConnected = true
-        
-        if isConnected {
-            API.getGenres() { genres in
-                GenresManager.shared.genres = genres
-                self.fetchPopularShows()
+        DataProvider.getGenres() { genres in
+            GenresManager.shared.genres = genres
+            DataProvider.getPopularShows() { shows in
+                self.popularShows = shows
+                self.popularShowsCollectionView.reloadData()
             }
-        } else {
-            //Load from CD here.
         }
-    }
-    
-    private func fetchPopularShows() {
-        API.getPopularShows() { shows in
-            self.save(shows)
-            self.popularShowsCollectionView.reloadData()
-        }
-    }
-    
-    
-    /// Stores the retrieved shows both in memory and CoreData.
-    func save(_ shows: [Show]) {
-        self.popularShows = shows
         
-        let dbm = DatabaseManager()
-        dbm.saveShows(shows, for: "Popular")
     }
     
     @IBAction func didTapSearch(_ sender: Any) {

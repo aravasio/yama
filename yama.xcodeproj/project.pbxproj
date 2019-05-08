@@ -23,6 +23,7 @@
 		575F9AAC22063D060016E35E /* ShowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAB22063D060016E35E /* ShowApi.swift */; };
 		575F9AAE22063D170016E35E /* GenreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAD22063D170016E35E /* GenreApi.swift */; };
 		57608C2922825EBA00597266 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57608C2822825EBA00597266 /* DatabaseManager.swift */; };
+		57608C2C22828B0000597266 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57608C2B22828B0000597266 /* DataProvider.swift */; };
 		578725FF22823E7B000C7B1E /* ModelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */; };
 		579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F72206281E0016E3CC /* AppDelegate.swift */; };
 		579E29FD2206281E0016E3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FB2206281E0016E3CC /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		575F9AAB22063D060016E35E /* ShowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowApi.swift; sourceTree = "<group>"; };
 		575F9AAD22063D170016E35E /* GenreApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreApi.swift; sourceTree = "<group>"; };
 		57608C2822825EBA00597266 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		57608C2B22828B0000597266 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		578725FE22823E7B000C7B1E /* Shows.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shows.xcdatamodel; sourceTree = "<group>"; };
 		579E29F42206281E0016E3CC /* yama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		579E29F72206281E0016E3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		57608C2A22828AE500597266 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				57608C2B22828B0000597266 /* DataProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		579E29EB2206281E0016E3CC = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 		579E29F62206281E0016E3CC /* yama */ = {
 			isa = PBXGroup;
 			children = (
+				57608C2A22828AE500597266 /* Provider */,
 				572F39A822067252005BFC3A /* Helpers */,
 				575F9AAF220657CA0016E35E /* UI */,
 				575F9AA822063CE20016E35E /* Models */,
@@ -347,6 +358,7 @@
 				572F39AC22074BC9005BFC3A /* PopularShowsCollectionCell.swift in Sources */,
 				572F39AE22075015005BFC3A /* Genre.swift in Sources */,
 				572F39B82207B17D005BFC3A /* Constants.swift in Sources */,
+				57608C2C22828B0000597266 /* DataProvider.swift in Sources */,
 				575F9AA722063CB00016E35E /* VideoResults.swift in Sources */,
 				57608C2922825EBA00597266 /* DatabaseManager.swift in Sources */,
 				572F39B0220753D4005BFC3A /* GenresManager.swift in Sources */,

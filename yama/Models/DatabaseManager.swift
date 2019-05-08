@@ -55,4 +55,33 @@ class DatabaseManager {
             print("Failed to save")
         }
     }
+    
+    func fetchShows(for category: String) -> [Show] {
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObject")
+        request.predicate = NSPredicate(format: "category = %@", category)
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request) as [AnyObject]
+            let shows = result.compactMap { return Show(data: $0) }
+            return shows
+        } catch {
+            print("failed")
+            return []
+        }
+    }
+    
+    func fetchGenres() -> [Genre] {
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Genres")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request) as [AnyObject]
+            let genres = result.compactMap { return Genre(data: $0) }
+            return genres
+        } catch {
+            print("failed")
+            return []
+        }
+    }
 }

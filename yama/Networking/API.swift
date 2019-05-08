@@ -6,6 +6,10 @@
 //  Copyright © 2019 Alejandro Ravasio. All rights reserved.
 //
 
+// TODO: Analyze: Is this too much decoupling?
+// Provider -> CoreData / API format seemed cool, originally, but now I'm not so sure.
+// Should I remove Provider layer and bring reachability checking and CoreData fetching to API?
+
 import Foundation
 import Moya
 
@@ -13,7 +17,6 @@ import Moya
 /// Access hub to all TMDb endpoints
 class API {
     
-
     /// NOTE: sensitive data should never be stored in either code or plist files.
     /// They are, by definition, vulnerable to binary dumps.
     /// I'm doing this to avoid the unnecesary complexity of dealing with the enclave.
@@ -25,21 +28,16 @@ class API {
     
     
     /// Production providers. It provides no debug info on responses and is, thus, lean-oriented.
-    static let tvShowsProvider = MoyaProvider<ShowApi>()
-    static let tvGenresProvider = MoyaProvider<GenreApi>()
+    fileprivate static let tvShowsProvider = MoyaProvider<ShowApi>()
+    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>()
     
     
     /**
      Extremely verbose providers for debugging purposes.
      Highly adviced not to use this one unless you ought to debug something or are curious what/how it works.
      */
-//    static let provider = MoyaProvider<ShowApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
-//    static let tvGenresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    
-    
-    /// Due to the tiny scope of the app, all tv requests will basically map to this.
-    typealias ShowsResponse = (([Show]) -> ())
-    typealias GenresResponse = (([Genre]) -> ())
+//    fileprivate static let provider = MoyaProvider<ShowApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     
     /**
@@ -48,7 +46,7 @@ class API {
      - Parameters:
          - completion: code to be executed on a succesful request.
      */
-    static func getPopularShows(completion: @escaping ShowsResponse) {
+    static func getPopularShows(completion: @escaping ([Show]) -> ()) {
         API.fetch(provider: tvShowsProvider, endpoint: ShowApi.popular, returnType: APIShowResults.self, completion: { result in
             completion(result.shows)
         })
@@ -62,11 +60,12 @@ class API {
      - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
      - completion: code to be executed on a succesful request.
      */
-    static func getTopRatedShows(page: Int, completion: @escaping ShowsResponse) {
+    static func getTopRatedShows(page: Int, completion: @escaping ([Show]) -> ()) {
         API.fetch(provider: tvShowsProvider, endpoint: ShowApi.topRated(page: page), returnType: APIShowResults.self, completion: { result in
             completion(result.shows)
         })
     }
+    
     
     /**
      Fetch all genres for TV Shows from TMDb.
@@ -74,7 +73,7 @@ class API {
      - Parameters:
          - completion: code to be executed on a successful request.
      */
-    static func getGenres(completion: @escaping GenresResponse) {
+    static func getGenres(completion: @escaping ([Genre]) -> ()) {
         API.fetch(provider: tvGenresProvider, endpoint: GenreApi.list, returnType: APIGenresResults.self, completion: {
             completion($0.genres)
         })
