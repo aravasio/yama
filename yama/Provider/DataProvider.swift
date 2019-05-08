@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Reachability
 
 /// Determines where to go for data.
 /// If the device's connected to the internet (Reachability), then it fetches remotely.
@@ -15,8 +16,7 @@ import Foundation
 class DataProvider {
     
     /// Flags internet access from this device. It's used to know if we should try to fetch data remote or locally.
-    //TODO: TODO: Integrate something like Reachavility to handle this. Meanwhile, just for dev work, we're using this.
-    fileprivate static let isConnected = true
+    fileprivate static let isConnected = Reachability()?.connection != .none
     
     /// My database manager. I use it to interface with CoreData.
     fileprivate static let dbm = DatabaseManager()
