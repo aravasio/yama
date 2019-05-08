@@ -14,15 +14,13 @@ class DatabaseManager {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    func saveShows(_ shows: [Show], for category: String) {
+    func store(shows: [Show], for category: String) {
         shows.forEach {
             self.saveShow($0, category: category)
         }
-        
-        print("Shows saved to Local Storage.")
     }
     
-    func saveShow(_ show: Show, category: String) {
+    fileprivate func saveShow(_ show: Show, category: String) {
         let context = appDelegate.persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: "ShowObject", in: context) else {
             return
@@ -71,9 +69,35 @@ class DatabaseManager {
         }
     }
     
+    
+    
+    
+    func store(genres: [Genre]) {
+        genres.forEach {
+            self.saveGenre($0)
+        }
+    }
+    
+    fileprivate func saveGenre(_ genre: Genre) {
+        let context = appDelegate.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "GenreObject", in: context) else {
+            return
+        }
+        
+        let newGenre = NSManagedObject(entity: entity, insertInto: context)
+        newGenre.setValue(genre.id, forKey: "id")
+        newGenre.setValue(genre.name, forKey: "name")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save")
+        }
+    }
+    
     func fetchGenres() -> [Genre] {
         let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Genres")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GenreObject")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request) as [AnyObject]

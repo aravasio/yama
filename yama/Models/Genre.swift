@@ -10,7 +10,7 @@ import Foundation
 
 struct Genre: Codable {
     let id: Int!
-    let name: String!
+    let name: String
     
     // Init created for the specific purpose of passing raw CoreData to it and map it to an actual in-memory object
     // I can more easily use across the app.

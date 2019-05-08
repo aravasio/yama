@@ -6,10 +6,6 @@
 //  Copyright © 2019 Alejandro Ravasio. All rights reserved.
 //
 
-// TODO: Analyze: Is this too much decoupling?
-// Provider -> CoreData / API format seemed cool, originally, but now I'm not so sure.
-// Should I remove Provider layer and bring reachability checking and CoreData fetching to API?
-
 import Foundation
 import Moya
 

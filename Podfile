@@ -9,5 +9,6 @@ target 'yama' do
   pod 'Moya'
   pod 'Kingfisher'
   pod 'UIImageColors'
+  pod 'ReachabilitySwift'
 
 end

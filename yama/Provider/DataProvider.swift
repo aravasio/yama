@@ -16,7 +16,7 @@ class DataProvider {
     
     /// Flags internet access from this device. It's used to know if we should try to fetch data remote or locally.
     //TODO: TODO: Integrate something like Reachavility to handle this. Meanwhile, just for dev work, we're using this.
-    fileprivate static let isConnected = false
+    fileprivate static let isConnected = true
     
     /// My database manager. I use it to interface with CoreData.
     fileprivate static let dbm = DatabaseManager()
@@ -33,7 +33,7 @@ class DataProvider {
             // Remote call
             API.getGenres(completion: { genres in
                 completion(genres)
-                //TODO: TODO: Save genres to CD
+                dbm.store(genres: genres)
             })
         } else {
             //CoreData
@@ -54,7 +54,7 @@ class DataProvider {
             // Remote call
             API.getPopularShows(completion: { shows in
                 completion(shows)
-                DataProvider.dbm.saveShows(shows, for: "Popular")
+                DataProvider.dbm.store(shows: shows, for: "Popular")
             })
         } else {
             //CoreData

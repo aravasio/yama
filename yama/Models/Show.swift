@@ -37,9 +37,15 @@ struct Show: Codable {
         self.rating = data.value(forKey: "rating") as? Double ?? 0
         self.voteCount = data.value(forKey: "voteCount") as? Int ?? 0
         self.overview = data.value(forKey: "overview") as? String ?? ""
-        self.genres = data.value(forKey: "genres") as? [Int] ?? []
         self.countryOfOrigin = data.value(forKey: "countryOfOrigin") as? [String] ?? []
         self.originalLanguage = data.value(forKey: "originalLanguage") as? String ?? ""
+        
+        if let genresRaw = data.value(forKey: "genres") as? Data,
+            let genreIds = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(genresRaw) as? [Int] ?? [] {
+                self.genres = genreIds
+        } else {
+            self.genres = []
+        }
     }
     
     private enum CodingKeys: String, CodingKey {

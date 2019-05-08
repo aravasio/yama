@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Genres" representedClassName="Genres" syncable="YES" codeGenerationType="class">
+    <entity name="GenreObject" representedClassName="GenreObject" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -21,6 +21,6 @@
     </entity>
     <elements>
         <element name="ShowObject" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="Genres" positionX="-63" positionY="72" width="128" height="75"/>
+        <element name="GenreObject" positionX="-63" positionY="72" width="128" height="75"/>
     </elements>
 </model>
