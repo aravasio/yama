@@ -16,7 +16,7 @@ import Reachability
 class DataProvider {
     
     /// Flags internet access from this device. It's used to know if we should try to fetch data remote or locally.
-    fileprivate static let isConnected = Reachability()?.connection != .none
+    fileprivate static let isConnected = Reachability()?.connection != Reachability.Connection.none
     
     /// My database manager. I use it to interface with CoreData.
     fileprivate static let dbm = DatabaseManager()
