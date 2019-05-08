@@ -21,8 +21,6 @@ class ShowsListViewController: UIViewController {
             activityIndicator.hidesWhenStopped = true
         }
     }
-    
-//    fileprivate var mySubscriptions: [Show] = []
 
     fileprivate var popularShows: [Show] = [] {
         didSet {
