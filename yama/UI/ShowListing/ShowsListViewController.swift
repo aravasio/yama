@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class ShowsListViewController: UIViewController {
     
@@ -21,18 +22,16 @@ class ShowsListViewController: UIViewController {
         }
     }
     
-    fileprivate var mySubscriptions: [Show] = []
-    
+//    fileprivate var mySubscriptions: [Show] = []
+
     fileprivate var popularShows: [Show] = [] {
         didSet {
             if popularShows.isEmpty {
                 popularShowsCollectionView.isHidden = true
                 activityIndicator.startAnimating()
-                
             } else {
                 popularShowsCollectionView.reloadData()
             }
-            
         }
     }
     
@@ -58,18 +57,32 @@ class ShowsListViewController: UIViewController {
         
         configurePopularShowsView()
         
-        API.getGenres() { genres in
-            GenresManager.shared.genres = genres
-            self.fetchPopularShows()
+        let isConnected = true
+        
+        if isConnected {
+            API.getGenres() { genres in
+                GenresManager.shared.genres = genres
+                self.fetchPopularShows()
+            }
+        } else {
+            //Load from CD here.
         }
-
     }
     
     private func fetchPopularShows() {
         API.getPopularShows() { shows in
-            self.popularShows = shows
+            self.save(shows)
             self.popularShowsCollectionView.reloadData()
         }
+    }
+    
+    
+    /// Stores the retrieved shows both in memory and CoreData.
+    func save(_ shows: [Show]) {
+        self.popularShows = shows
+        
+        let dbm = DatabaseManager()
+        dbm.saveShows(shows, for: "Popular")
     }
     
     @IBAction func didTapSearch(_ sender: Any) {
@@ -103,7 +116,7 @@ extension ShowsListViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredPopularShows.count
+        return popularShows.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
