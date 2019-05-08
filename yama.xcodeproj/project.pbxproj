@@ -23,7 +23,7 @@
 		575F9AAC22063D060016E35E /* ShowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAB22063D060016E35E /* ShowApi.swift */; };
 		575F9AAE22063D170016E35E /* GenreApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F9AAD22063D170016E35E /* GenreApi.swift */; };
 		57608C2922825EBA00597266 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57608C2822825EBA00597266 /* DatabaseManager.swift */; };
-		578725FF22823E7B000C7B1E /* ShowObject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578725FD22823E7B000C7B1E /* ShowObject.xcdatamodeld */; };
+		578725FF22823E7B000C7B1E /* ModelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */; };
 		579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579E29F72206281E0016E3CC /* AppDelegate.swift */; };
 		579E29FD2206281E0016E3CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FB2206281E0016E3CC /* Main.storyboard */; };
 		579E29FF2206281F0016E3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579E29FE2206281F0016E3CC /* Assets.xcassets */; };
@@ -134,8 +134,8 @@
 				575F9AA422063BFD0016E35E /* APIShowResults.swift */,
 				572F39B12207555E005BFC3A /* APIGenreResults.swift */,
 				575F9AA622063CB00016E35E /* VideoResults.swift */,
-				578725FD22823E7B000C7B1E /* ShowObject.xcdatamodeld */,
 				57608C2822825EBA00597266 /* DatabaseManager.swift */,
+				578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				572F39B22207555E005BFC3A /* APIGenreResults.swift in Sources */,
 				579E29F82206281E0016E3CC /* AppDelegate.swift in Sources */,
 				579E2A0B220629670016E3CC /* ShowsListViewController.swift in Sources */,
-				578725FF22823E7B000C7B1E /* ShowObject.xcdatamodeld in Sources */,
+				578725FF22823E7B000C7B1E /* ModelData.xcdatamodeld in Sources */,
 				572F39AC22074BC9005BFC3A /* PopularShowsCollectionCell.swift in Sources */,
 				572F39AE22075015005BFC3A /* Genre.swift in Sources */,
 				572F39B82207B17D005BFC3A /* Constants.swift in Sources */,
@@ -563,13 +563,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		578725FD22823E7B000C7B1E /* ShowObject.xcdatamodeld */ = {
+		578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				578725FE22823E7B000C7B1E /* Shows.xcdatamodel */,
 			);
 			currentVersion = 578725FE22823E7B000C7B1E /* Shows.xcdatamodel */;
-			path = ShowObject.xcdatamodeld;
+			path = ModelData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

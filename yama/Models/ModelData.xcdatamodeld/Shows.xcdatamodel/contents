@@ -6,6 +6,7 @@
     </entity>
     <entity name="ShowObject" representedClassName="ShowObject" syncable="YES" codeGenerationType="class">
         <attribute name="backdrop" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryOfOrigin" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="genres" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -19,7 +20,7 @@
         <attribute name="voteCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ShowObject" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="ShowObject" positionX="-63" positionY="-18" width="128" height="240"/>
         <element name="Genres" positionX="-63" positionY="72" width="128" height="75"/>
     </elements>
 </model>

@@ -18,11 +18,16 @@ class DatabaseManager {
         shows.forEach {
             self.saveShow($0, category: category)
         }
+        
+        print("Shows saved to Local Storage.")
     }
     
     func saveShow(_ show: Show, category: String) {
         let context = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "ShowObject", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: "ShowObject", in: context) else {
+            return
+        }
+        
         let newShow = NSManagedObject(entity: entity, insertInto: context)
         newShow.setValue(category, forKey: "category")
         newShow.setValue(show.id, forKey: "id")
