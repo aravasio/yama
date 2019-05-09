@@ -77,10 +77,10 @@ class MoviesListViewController: UIViewController {
     }
     
     
-    // Which genre to fetch based on the tabBarIndex
+    // Which category to fetch based on the tabBarIndex
     // This feels kinda hacky, and I don't really like inspecting the parentVC from the child.
     // TODO: TODO: Reconsider a new way of handling this. Ideally, taking pagination into account.
-    var genreToFetch: MovieType {
+    var categoryToFetch: MovieType {
         get {
             guard let index = self.tabBarController?.selectedIndex else {
                 return .popular(page: 1)
@@ -113,7 +113,7 @@ class MoviesListViewController: UIViewController {
         
         DataProvider.getGenres() { genres in
             GenresManager.shared.genres = genres
-            DataProvider.getMovies(for: self.genreToFetch) { movies in
+            DataProvider.getMovies(for: self.categoryToFetch) { movies in
                 self.popularMovies = movies
                 self.popularMoviesCollectionView.reloadData()
             }
