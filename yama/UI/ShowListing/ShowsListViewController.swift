@@ -80,9 +80,34 @@ class ShowsListViewController: UIViewController {
     }
     
     
+    // Which genre to fetch based on the tabBarIndex
+    // This feels kinda hacky, and I don't really like inspecting the parentVC from the child.
+    // TODO: TODO: Reconsider a new way of handling this. Ideally, taking pagination into account.
+    var genreToFetch: ShowType {
+        get {
+            guard let index = self.tabBarController?.selectedIndex else {
+                return .popular
+            }
+            
+            switch index {
+            case 0:
+                return .popular
+            case 1:
+                return .topRated(page: 1)
+            case 2:
+                return .upcoming(page: 1)
+            default:
+                return .popular
+            }
+        }
+    }
+    
+    
+    /// VC LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
@@ -91,7 +116,7 @@ class ShowsListViewController: UIViewController {
         
         DataProvider.getGenres() { genres in
             GenresManager.shared.genres = genres
-            DataProvider.getPopularShows() { shows in
+            DataProvider.getShows(for: self.genreToFetch) { shows in
                 self.popularShows = shows
                 self.popularShowsCollectionView.reloadData()
             }

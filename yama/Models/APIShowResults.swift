@@ -16,7 +16,7 @@ struct APIShowResults: Codable {
     let pages: Int
 
     private enum CodingKeys: String, CodingKey {
-        case page = "page"
+        case page
         case results = "total_results"
         case pages = "total_pages"
         case shows = "results"

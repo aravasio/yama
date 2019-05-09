@@ -11,15 +11,19 @@ import Foundation
 import Foundation
 import Moya
 
-enum ShowApi: TargetType {
-    
+enum ShowType {
     /// All cases are entirely experimental in nature. I'm messing around with different TMDb endpoints to
     /// check out which ones I'm more comfortable with for the purpose of the project.
     /// They might be implemented as endpoints, but not necessarily consumed anywhere else in the app.
     case popular
     case topRated(page: Int)
     case upcoming(page: Int)
-    
+}
+
+
+/// Conforming the enum to the TargetType for Moya.
+extension ShowType: TargetType {
+
     var baseURL: URL {
         guard let url = URL(string: "https://api.themoviedb.org/3/tv") else { fatalError("baseURL could not be configured") }
         return url

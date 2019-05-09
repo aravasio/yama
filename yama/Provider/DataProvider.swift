@@ -62,4 +62,60 @@ class DataProvider {
         }
     }
     
+    
+    /**
+     Fetch the Top Rated shows. If it's not connected to the internet, it will fetch data (if any available)
+     from CoreData.
+     
+     - Parameters:
+     - completion: code to be executed on a succesful request.
+     */
+    static func getTopRatedShows(completion: @escaping ([Show]) -> ()) {
+        if isConnected {
+            // Remote call
+            API.getTopRatedShows(page: 1, completion:  { shows in
+                completion(shows)
+                DataProvider.dbm.store(shows: shows, for: "TopRated")
+            })
+        } else {
+            //CoreData
+            completion(dbm.fetchShows(for: "TopRated"))
+        }
+    }
+    
+    
+    /**
+     Fetch the upcoming shows. If it's not connected to the internet, it will fetch data (if any available)
+     from CoreData.
+     
+     - Parameters:
+     - completion: code to be executed on a succesful request.
+     */
+    static func getUpcomingShows(completion: @escaping ([Show]) -> ()) {
+        if isConnected {
+            // Remote call
+            API.getTopRatedShows(page: 1, completion:  { shows in
+                completion(shows)
+                DataProvider.dbm.store(shows: shows, for: "Upcoming")
+            })
+        } else {
+            //CoreData
+            completion(dbm.fetchShows(for: "Upcoming"))
+        }
+    }
+    
+    
+    // Interface to wrap these methods.
+    static func getShows(for type: ShowType, completion: @escaping ([Show])-> ()) {
+        switch type {
+        case .popular:
+            getPopularShows(completion: completion)
+        case .topRated:
+            getTopRatedShows(completion: completion)
+        case .upcoming:
+            getUpcomingShows(completion: completion)
+        }
+    }
+    
+    
 }

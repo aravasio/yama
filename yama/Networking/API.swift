@@ -24,7 +24,7 @@ class API {
     
     
     /// Production providers. It provides no debug info on responses and is, thus, lean-oriented.
-    fileprivate static let tvShowsProvider = MoyaProvider<ShowApi>()
+    fileprivate static let tvShowsProvider = MoyaProvider<ShowType>()
     fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>()
     
     
@@ -32,7 +32,7 @@ class API {
      Extremely verbose providers for debugging purposes.
      Highly adviced not to use this one unless you ought to debug something or are curious what/how it works.
      */
-//    fileprivate static let provider = MoyaProvider<ShowApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let tvShowsProvider = MoyaProvider<ShowType>(plugins: [NetworkLoggerPlugin(verbose: true)])
 //    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     
@@ -43,7 +43,7 @@ class API {
          - completion: code to be executed on a succesful request.
      */
     static func getPopularShows(completion: @escaping ([Show]) -> ()) {
-        API.fetch(provider: tvShowsProvider, endpoint: ShowApi.popular, returnType: APIShowResults.self, completion: { result in
+        API.fetch(provider: tvShowsProvider, endpoint: .popular, returnType: APIShowResults.self, completion: { result in
             completion(result.shows)
         })
     }
@@ -57,7 +57,21 @@ class API {
      - completion: code to be executed on a succesful request.
      */
     static func getTopRatedShows(page: Int, completion: @escaping ([Show]) -> ()) {
-        API.fetch(provider: tvShowsProvider, endpoint: ShowApi.topRated(page: page), returnType: APIShowResults.self, completion: { result in
+        API.fetch(provider: tvShowsProvider, endpoint: .topRated(page: page), returnType: APIShowResults.self, completion: { result in
+            completion(result.shows)
+        })
+    }
+    
+    
+    /**
+     Fetch the upcoming shows.
+     
+     - Parameters:
+     - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
+     - completion: code to be executed on a succesful request.
+     */
+    static func getUpcomingShows(page: Int, completion: @escaping ([Show]) -> ()) {
+        API.fetch(provider: tvShowsProvider, endpoint: .upcoming(page: page), returnType: APIShowResults.self, completion: { result in
             completion(result.shows)
         })
     }
@@ -70,7 +84,7 @@ class API {
          - completion: code to be executed on a successful request.
      */
     static func getGenres(completion: @escaping ([Genre]) -> ()) {
-        API.fetch(provider: tvGenresProvider, endpoint: GenreApi.list, returnType: APIGenresResults.self, completion: {
+        API.fetch(provider: tvGenresProvider, endpoint: .list, returnType: APIGenresResults.self, completion: {
             completion($0.genres)
         })
     }
