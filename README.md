@@ -44,5 +44,7 @@ Caching was done using CoreData. We simply store the received, valid responses a
 
  The idea behind it is that smaller-scope entities are inherently more rebust, are easier to test, matain and refactor/discard over time.
 
+
+## What are the indicators of 'good' or 'clean' code?
  To me, a good piece of code is one that's both clear and concise. It's as expressive as possible about its intent and scope, and tries to keep up with detailed documentation within the code itself about usability. It handles as little state as reasonably possible, and probably makes great use of stuff such as Dependency Injection or other "low mutability" strategies to keep data integrity across the board.
 
