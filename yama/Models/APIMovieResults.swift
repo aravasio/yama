@@ -1,5 +1,5 @@
 //
-//  APIShowResults.swift
+//  APIMovieResults.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-// Model for the response format of TMDB for Shows.
-struct APIShowResults: Codable {
+// Model for the response format of TMDB for Movies.
+struct APIMovieResults: Codable {
     let page: Int
-    let shows: [Show]
+    let movies: [Movie]
     let results: Int
     let pages: Int
 
@@ -19,6 +19,6 @@ struct APIShowResults: Codable {
         case page
         case results = "total_results"
         case pages = "total_pages"
-        case shows = "results"
+        case movies = "results"
     }
 }

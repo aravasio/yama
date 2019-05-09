@@ -1,5 +1,5 @@
 //
-//  ShowDetailsViewController.swift
+//  MovieDetailsViewController.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 03/02/2019.
@@ -11,10 +11,10 @@ import UIKit
 import Kingfisher
 
 
-/// Show Details VC. It's used to display more details on the received Show.
-class ShowDetailsViewController: UIViewController {
+/// Movie Details VC. It's used to display more details on the received Movie.
+class MovieDetailsViewController: UIViewController {
     
-    static let identifier = "showDetailsViewControllerId"
+    static let identifier = "movieDetailsViewControllerId"
 
     @IBOutlet weak var posterHeight: NSLayoutConstraint!
     
@@ -27,12 +27,11 @@ class ShowDetailsViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var originalLanguageLabel: UILabel!
-    @IBOutlet weak var countryOfOriginLabel: UILabel!
+    @IBOutlet weak var trailerButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var overviewTitleLabel: UILabel!
     @IBOutlet weak var originalLanguageTitleLabel: UILabel!
-    @IBOutlet weak var countryOfOriginTitleLabel: UILabel!
     
     
     let minHeight: CGFloat = 57
@@ -41,7 +40,7 @@ class ShowDetailsViewController: UIViewController {
     let minWidth: CGFloat = 38
     let maxWidth: CGFloat = 182
     
-    fileprivate var show: Show!
+    fileprivate var movie: Movie!
     
     
     override func viewDidLoad() {
@@ -49,23 +48,24 @@ class ShowDetailsViewController: UIViewController {
         
         tintView.backgroundColor = .backgroundBlack
         
+        trailerButton.isHidden = movie.videoPath?.isEmpty ?? true
+        
         backButton.layer.cornerRadius = backButton.frame.width / 2
         backButton.backgroundColor = .backgroundBlack
         
         configureLabels()
         configurePoster()
-    
-        descriptionLabel.text = show.overview
+        
+        descriptionLabel.text = movie.overview
         scrollView.delegate = self
     }
     
     
     private func configureLabels() {
-        titleLabel.text = show.title
-        yearLabel.text = show.releaseDate
-        originalLanguageLabel.text = show.originalLanguage
-        countryOfOriginLabel.text = show.countryOfOrigin.joined(separator: ", ")
-        ratingLabel.text = "\(show.rating) ⭐"
+        titleLabel.text = movie.title
+        yearLabel.text = movie.releaseDate
+        originalLanguageLabel.text = movie.originalLanguage
+        ratingLabel.text = "\(movie.rating) ⭐"
         
         
         let strokeTextAttributes: [NSAttributedString.Key : Any] = [
@@ -75,13 +75,12 @@ class ShowDetailsViewController: UIViewController {
         
         overviewTitleLabel.attributedText = NSAttributedString(string: "Overview:", attributes: strokeTextAttributes)
         originalLanguageTitleLabel.attributedText = NSAttributedString(string: "Original language:", attributes: strokeTextAttributes)
-        countryOfOriginTitleLabel.attributedText = NSAttributedString(string: "Country of origin:", attributes: strokeTextAttributes)
     }
     
     
     //Fetch a poster or backdrop, get primary color from the image, apply noir filter.
     private func configurePoster() {
-        guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(show.posterPath ?? show.backdrop)") else { return }
+        guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(movie.posterPath ?? movie.backdrop)") else { return }
 
         self.posterImageView.isHidden = true
         ImageDownloader.default.downloadImage(with: imageUrl) { result in
@@ -116,6 +115,14 @@ class ShowDetailsViewController: UIViewController {
     }
     
     
+    @IBAction func didTapWatchVide(_ sender: UIButton) {
+        if let path = movie.videoPath {
+            let vc = YoutubeVideoViewController.create(with: path)
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    
     @IBAction func didTapBack(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -126,19 +133,19 @@ class ShowDetailsViewController: UIViewController {
      and it returns an instantiated VC that I only need to push forward.
      
      - Parameters:
-         - show: The Show we want to present.
+         - movie: The Movie we want to present.
      
-     - Returns: A ShowDetailsVC.
+     - Returns: A MovieDetailsVC.
      */
-    class func create(for show: Show) -> ShowDetailsViewController {
+    class func create(for movie: Movie) -> MovieDetailsViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: ShowDetailsViewController.identifier) as! ShowDetailsViewController
-        vc.show = show
+        let vc = storyboard.instantiateViewController(withIdentifier: MovieDetailsViewController.identifier) as! MovieDetailsViewController
+        vc.movie = movie
         return vc
     }
 }
 
-extension ShowDetailsViewController: UIScrollViewDelegate {
+extension MovieDetailsViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y

@@ -22,7 +22,7 @@ class DataProvider {
     fileprivate static let dbm = DatabaseManager()
     
     /**
-     Fetch all genres for TV Shows. If it's not connected to the internet, it will fetch data (if any available)
+     Fetch all genres for TV Movies. If it's not connected to the internet, it will fetch data (if any available)
      from CoreData.
      
      - Parameters:
@@ -43,77 +43,77 @@ class DataProvider {
 
     
     /**
-     Fetch the most popular shows. If it's not connected to the internet, it will fetch data (if any available)
+     Fetch the most popular movies. If it's not connected to the internet, it will fetch data (if any available)
      from CoreData.
      
      - Parameters:
      - completion: code to be executed on a succesful request.
      */
-    static func getPopularShows(completion: @escaping ([Show]) -> ()) {
+    static func getPopularMovies(completion: @escaping ([Movie]) -> ()) {
         if isConnected {
             // Remote call
-            API.getPopularShows(completion: { shows in
-                completion(shows)
-                DataProvider.dbm.store(shows: shows, for: "Popular")
+            API.getPopularMovies(page: 1,completion: { movies in
+                completion(movies)
+                DataProvider.dbm.store(movies: movies, for: "Popular")
             })
         } else {
             //CoreData
-            completion(dbm.fetchShows(for: "Popular"))
+            completion(dbm.fetchMovies(for: "Popular"))
         }
     }
     
     
     /**
-     Fetch the Top Rated shows. If it's not connected to the internet, it will fetch data (if any available)
+     Fetch the Top Rated movies. If it's not connected to the internet, it will fetch data (if any available)
      from CoreData.
      
      - Parameters:
      - completion: code to be executed on a succesful request.
      */
-    static func getTopRatedShows(completion: @escaping ([Show]) -> ()) {
+    static func getTopRatedMovies(completion: @escaping ([Movie]) -> ()) {
         if isConnected {
             // Remote call
-            API.getTopRatedShows(page: 1, completion:  { shows in
-                completion(shows)
-                DataProvider.dbm.store(shows: shows, for: "TopRated")
+            API.getTopRatedMovies(page: 1, completion:  { movies in
+                completion(movies)
+                DataProvider.dbm.store(movies: movies, for: "TopRated")
             })
         } else {
             //CoreData
-            completion(dbm.fetchShows(for: "TopRated"))
+            completion(dbm.fetchMovies(for: "TopRated"))
         }
     }
     
     
     /**
-     Fetch the upcoming shows. If it's not connected to the internet, it will fetch data (if any available)
+     Fetch the upcoming movies. If it's not connected to the internet, it will fetch data (if any available)
      from CoreData.
      
      - Parameters:
      - completion: code to be executed on a succesful request.
      */
-    static func getUpcomingShows(completion: @escaping ([Show]) -> ()) {
+    static func getUpcomingMovies(completion: @escaping ([Movie]) -> ()) {
         if isConnected {
             // Remote call
-            API.getTopRatedShows(page: 1, completion:  { shows in
-                completion(shows)
-                DataProvider.dbm.store(shows: shows, for: "Upcoming")
+            API.getTopRatedMovies(page: 1, completion:  { movies in
+                completion(movies)
+                DataProvider.dbm.store(movies: movies, for: "Upcoming")
             })
         } else {
             //CoreData
-            completion(dbm.fetchShows(for: "Upcoming"))
+            completion(dbm.fetchMovies(for: "Upcoming"))
         }
     }
     
     
     // Interface to wrap these methods.
-    static func getShows(for type: ShowType, completion: @escaping ([Show])-> ()) {
+    static func getMovies(for type: MovieType, completion: @escaping ([Movie])-> ()) {
         switch type {
         case .popular:
-            getPopularShows(completion: completion)
+            getPopularMovies(completion: completion)
         case .topRated:
-            getTopRatedShows(completion: completion)
+            getTopRatedMovies(completion: completion)
         case .upcoming:
-            getUpcomingShows(completion: completion)
+            getUpcomingMovies(completion: completion)
         }
     }
     

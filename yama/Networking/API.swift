@@ -24,7 +24,7 @@ class API {
     
     
     /// Production providers. It provides no debug info on responses and is, thus, lean-oriented.
-    fileprivate static let tvShowsProvider = MoyaProvider<ShowType>()
+    fileprivate static let tvMoviesProvider = MoyaProvider<MovieType>()
     fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>()
     
     
@@ -32,53 +32,53 @@ class API {
      Extremely verbose providers for debugging purposes.
      Highly adviced not to use this one unless you ought to debug something or are curious what/how it works.
      */
-//    fileprivate static let tvShowsProvider = MoyaProvider<ShowType>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let tvMoviesProvider = MoyaProvider<MovieType>(plugins: [NetworkLoggerPlugin(verbose: true)])
 //    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     
     /**
-     Fetch the most popular shows.
+     Fetch the most popular movies.
      
      - Parameters:
          - completion: code to be executed on a succesful request.
      */
-    static func getPopularShows(completion: @escaping ([Show]) -> ()) {
-        API.fetch(provider: tvShowsProvider, endpoint: .popular, returnType: APIShowResults.self, completion: { result in
-            completion(result.shows)
+    static func getPopularMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
+        API.fetch(provider: tvMoviesProvider, endpoint: .popular(page: page), returnType: APIMovieResults.self, completion: { result in
+            completion(result.movies)
         })
     }
     
     
     /**
-     Fetch the top-rated shows.
+     Fetch the top-rated movies.
      
      - Parameters:
      - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
      - completion: code to be executed on a succesful request.
      */
-    static func getTopRatedShows(page: Int, completion: @escaping ([Show]) -> ()) {
-        API.fetch(provider: tvShowsProvider, endpoint: .topRated(page: page), returnType: APIShowResults.self, completion: { result in
-            completion(result.shows)
+    static func getTopRatedMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
+        API.fetch(provider: tvMoviesProvider, endpoint: .topRated(page: page), returnType: APIMovieResults.self, completion: { result in
+            completion(result.movies)
         })
     }
     
     
     /**
-     Fetch the upcoming shows.
+     Fetch the upcoming movies.
      
      - Parameters:
      - page: the page number we want to fetch data for. Given the high volume of information, pagination is a necessity.
      - completion: code to be executed on a succesful request.
      */
-    static func getUpcomingShows(page: Int, completion: @escaping ([Show]) -> ()) {
-        API.fetch(provider: tvShowsProvider, endpoint: .upcoming(page: page), returnType: APIShowResults.self, completion: { result in
-            completion(result.shows)
+    static func getUpcomingMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
+        API.fetch(provider: tvMoviesProvider, endpoint: .upcoming(page: page), returnType: APIMovieResults.self, completion: { result in
+            completion(result.movies)
         })
     }
     
     
     /**
-     Fetch all genres for TV Shows from TMDb.
+     Fetch all genres for TV Movies from TMDb.
      
      - Parameters:
          - completion: code to be executed on a successful request.

@@ -1,5 +1,5 @@
 //
-//  ShowsListViewController.swift
+//  MoviesListViewController.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -10,14 +10,14 @@ import UIKit
 import Kingfisher
 import CoreData
 
-/// This VC displays a list of shows that are provided to it by the DataProvider
-class ShowsListViewController: UIViewController {
+/// This VC displays a list of movies that are provided to it by the DataProvider
+class MoviesListViewController: UIViewController {
     
     @IBOutlet weak var searchContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var searchSegmentedControl: UISegmentedControl!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var popularLabel: UILabel!
-    @IBOutlet weak var popularShowsCollectionView: UICollectionView!
+    @IBOutlet weak var popularMoviesCollectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
         didSet {
             activityIndicator.hidesWhenStopped = true
@@ -25,30 +25,30 @@ class ShowsListViewController: UIViewController {
     }
     
 
-    // Complete list of shows given by the DataProvider
-    fileprivate var popularShows: [Show] = [] {
+    // Complete list of movies given by the DataProvider
+    fileprivate var popularMovies: [Movie] = [] {
         didSet {
-            if popularShows.isEmpty {
-                popularShowsCollectionView.isHidden = true
+            if popularMovies.isEmpty {
+                popularMoviesCollectionView.isHidden = true
                 activityIndicator.startAnimating()
             } else {
-                popularShowsCollectionView.reloadData()
+                popularMoviesCollectionView.reloadData()
             }
         }
     }
     
     fileprivate var selectedFilter: FilterType = .byTitle
     
-    // Computed variable defined by filtering the Shows array based on the searchField text.
+    // Computed variable defined by filtering the Movies array based on the searchField text.
     // If the title contains the text in the search field, it's a match.
-    fileprivate var filteredPopularShows: [Show] {
+    fileprivate var filteredPopularMovies: [Movie] {
         get {
             if let text = searchField.text?.lowercased(), !text.isEmpty {
                 
                 switch selectedFilter {
                 case .byTitle:
                     // We just need to filter by lowercased title.
-                    return popularShows.filter { $0.title.lowercased().contains(text) }
+                    return popularMovies.filter { $0.title.lowercased().contains(text) }
                     
                     
                 case .byGenre:
@@ -63,18 +63,16 @@ class ShowsListViewController: UIViewController {
                         }
                     }
                     
-                    // Then we filter all popular shows whose genres partially contain the filtered Genre IDs we just got.
+                    // Then we filter all popular movies whose genres partially contain the filtered Genre IDs we just got.
                     //
                     // This works because there are actually two versions of `contains`. One takes a closure in order to check each
                     // element against a predicate, and the other just compares an element directly.
                     // In this case, `$0.genre` is using the closure version, and `filteredGenres` is using the element version.
                     // And that is the reason you can pass a contains function into another contains function.
-                    let filteredShows = popularShows.filter { $0.genres.contains(where: filteredGenres.contains) }
-                    
-                    return filteredShows
+                    return popularMovies.filter { $0.genres.contains(where: filteredGenres.contains) }
                 }
             } else {
-                return popularShows
+                return popularMovies
             }
         }
     }
@@ -83,21 +81,21 @@ class ShowsListViewController: UIViewController {
     // Which genre to fetch based on the tabBarIndex
     // This feels kinda hacky, and I don't really like inspecting the parentVC from the child.
     // TODO: TODO: Reconsider a new way of handling this. Ideally, taking pagination into account.
-    var genreToFetch: ShowType {
+    var genreToFetch: MovieType {
         get {
             guard let index = self.tabBarController?.selectedIndex else {
-                return .popular
+                return .popular(page: 1)
             }
             
             switch index {
             case 0:
-                return .popular
+                return .popular(page: 1)
             case 1:
                 return .topRated(page: 1)
             case 2:
                 return .upcoming(page: 1)
             default:
-                return .popular
+                return .popular(page: 1)
             }
         }
     }
@@ -112,32 +110,32 @@ class ShowsListViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         configureSearchBar()
-        configurePopularShowsView()
+        configurePopularMoviesView()
         
         DataProvider.getGenres() { genres in
             GenresManager.shared.genres = genres
-            DataProvider.getShows(for: self.genreToFetch) { shows in
-                self.popularShows = shows
-                self.popularShowsCollectionView.reloadData()
+            DataProvider.getMovies(for: self.genreToFetch) { movies in
+                self.popularMovies = movies
+                self.popularMoviesCollectionView.reloadData()
             }
         }
     }
     
     fileprivate func configureSearchBar() {
         searchContainerHeight.constant = 0
-        searchField.placeholder = "show name"
+        searchField.placeholder = "movie name"
         searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
     }
     
     // Tracks when the segmented control changes value
     @IBAction func searchTypeChanged(_ sender: Any) {
         selectedFilter = searchSegmentedControl.selectedSegmentIndex == 0 ? .byTitle : .byGenre
-        popularShowsCollectionView.reloadData()
+        popularMoviesCollectionView.reloadData()
     }
     
     
     @objc private func searchFieldChanged() {
-        popularShowsCollectionView.reloadData()
+        popularMoviesCollectionView.reloadData()
     }
     
     
@@ -150,39 +148,39 @@ class ShowsListViewController: UIViewController {
     }
     
     
-    private func configurePopularShowsView() {
-        popularShowsCollectionView.delegate = self
-        popularShowsCollectionView.dataSource = self
-        popularShowsCollectionView.backgroundColor = .backgroundBlack
+    private func configurePopularMoviesView() {
+        popularMoviesCollectionView.delegate = self
+        popularMoviesCollectionView.dataSource = self
+        popularMoviesCollectionView.backgroundColor = .backgroundBlack
         
-        let nib = UINib(nibName: PopularShowsCollectionCell.identifier, bundle: nil)
-        popularShowsCollectionView.register(nib, forCellWithReuseIdentifier: PopularShowsCollectionCell.identifier)
+        let nib = UINib(nibName: PopularMoviesCollectionCell.identifier, bundle: nil)
+        popularMoviesCollectionView.register(nib, forCellWithReuseIdentifier: PopularMoviesCollectionCell.identifier)
     }
 }
 
 
-extension ShowsListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MoviesListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let show = filteredPopularShows[indexPath.row]
-        let vc = ShowDetailsViewController.create(for: show)
+        let movie = filteredPopularMovies[indexPath.row]
+        let vc = MovieDetailsViewController.create(for: movie)
         
         self.present(vc, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredPopularShows.count
+        return filteredPopularMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = popularShowsCollectionView.dequeueReusableCell(withReuseIdentifier: PopularShowsCollectionCell.identifier, for: indexPath) as! PopularShowsCollectionCell
-        let data = filteredPopularShows[indexPath.row]
+        let cell = popularMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: PopularMoviesCollectionCell.identifier, for: indexPath) as! PopularMoviesCollectionCell
+        let data = filteredPopularMovies[indexPath.row]
         cell.configure(for: data)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
-        let height: CGFloat = PopularShowsCollectionCell.cellHeight
+        let height: CGFloat = PopularMoviesCollectionCell.cellHeight
         
         return CGSize(width: width, height: height)
     }

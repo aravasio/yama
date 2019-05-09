@@ -19,47 +19,43 @@ class DatabaseManager {
     
     
     /**
-     Store an array of Shows in CoreData.
+     Store an array of Movies in CoreData.
      
      - Parameters:
-     - shows: An array of Show you want to store.
-     - category: The category that Show belongs to; Popular, TopRated, etc.
+     - movies: An array of Movie you want to store.
+     - category: The category that Movie belongs to; Popular, TopRated, etc.
      */
-    func store(shows: [Show], for category: String) {
-        shows.forEach {
-            self.saveShow($0, category: category)
+    func store(movies: [Movie], for category: String) {
+        movies.forEach {
+            self.saveMovie($0, category: category)
         }
     }
     
     
-    /// Stores a given show in CD.
-    fileprivate func saveShow(_ show: Show, category: String) {
+    /// Stores a given movie in CD.
+    fileprivate func saveMovie(_ movie: Movie, category: String) {
         let context = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "ShowObject", in: context) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: "MovieObject", in: context) else {
             return
         }
         
-        let newShow = NSManagedObject(entity: entity, insertInto: context)
-        newShow.setValue(category, forKey: "category")
-        newShow.setValue(show.id, forKey: "id")
-        newShow.setValue(show.title, forKey: "title")
-        newShow.setValue(show.posterPath, forKey: "posterPath")
-        newShow.setValue(show.videoPath, forKey: "videoPath")
-        newShow.setValue(show.overview, forKey: "overview")
-        newShow.setValue(show.releaseDate, forKey: "releaseDate")
-        newShow.setValue(show.backdrop, forKey: "backdrop")
-        newShow.setValue(show.rating, forKey: "rating")
-        newShow.setValue(show.voteCount, forKey: "voteCount")
-        newShow.setValue(show.originalLanguage, forKey: "originalLanguage")
+        let newMovie = NSManagedObject(entity: entity, insertInto: context)
+        newMovie.setValue(category, forKey: "category")
+        newMovie.setValue(movie.id, forKey: "id")
+        newMovie.setValue(movie.title, forKey: "title")
+        newMovie.setValue(movie.posterPath, forKey: "posterPath")
+        newMovie.setValue(movie.videoPath, forKey: "videoPath")
+        newMovie.setValue(movie.overview, forKey: "overview")
+        newMovie.setValue(movie.releaseDate, forKey: "releaseDate")
+        newMovie.setValue(movie.backdrop, forKey: "backdrop")
+        newMovie.setValue(movie.rating, forKey: "rating")
+        newMovie.setValue(movie.voteCount, forKey: "voteCount")
+        newMovie.setValue(movie.originalLanguage, forKey: "originalLanguage")
         
         //Data encoding of the [int]; genres.
-        let genresData = try! NSKeyedArchiver.archivedData(withRootObject: show.genres, requiringSecureCoding: false)
-        newShow.setValue(genresData, forKey: "genres")
+        let genresData = try! NSKeyedArchiver.archivedData(withRootObject: movie.genres, requiringSecureCoding: false)
+        newMovie.setValue(genresData, forKey: "genres")
 
-        //Data encoding of the [string]; country of origin/
-        let countryOfOriginData = try! NSKeyedArchiver.archivedData(withRootObject: show.countryOfOrigin, requiringSecureCoding: false)
-        newShow.setValue(countryOfOriginData, forKey: "countryOfOrigin")
-        
         do {
             try context.save()
         } catch {
@@ -69,20 +65,20 @@ class DatabaseManager {
     
     
     /**
-     Fetch from CoreData all shows whose category matches the one you passed.
+     Fetch from CoreData all movies whose category matches the one you passed.
      
      - Parameters:
      - completion: code to be executed on a succesful request.
      */
-    func fetchShows(for category: String) -> [Show] {
+    func fetchMovies(for category: String) -> [Movie] {
         let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObject")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieObject")
         request.predicate = NSPredicate(format: "category = %@", category)
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request) as [AnyObject]
-            let shows = result.compactMap { return Show(data: $0) }
-            return shows
+            let movies = result.compactMap { return Movie(data: $0) }
+            return movies
         } catch {
             print("failed")
             return []

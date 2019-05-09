@@ -1,5 +1,5 @@
 //
-// Show.swift
+//  Movie.swift
 //  yama
 //
 //  Created by Alejandro Ravasio on 02/02/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Show: Codable {
+struct Movie: Codable {
     let id: Int!
     let posterPath: String?
     let videoPath: String?
@@ -19,7 +19,6 @@ struct Show: Codable {
     let voteCount: Int
     let overview: String
     let genres: [Int]
-    let countryOfOrigin: [String]
     let originalLanguage: String
     
     // Init created for the specific purpose of passing raw CoreData to it and map it to an actual in-memory object
@@ -37,7 +36,6 @@ struct Show: Codable {
         self.rating = data.value(forKey: "rating") as? Double ?? 0
         self.voteCount = data.value(forKey: "voteCount") as? Int ?? 0
         self.overview = data.value(forKey: "overview") as? String ?? ""
-        self.countryOfOrigin = data.value(forKey: "countryOfOrigin") as? [String] ?? []
         self.originalLanguage = data.value(forKey: "originalLanguage") as? String ?? ""
         
         if let genresRaw = data.value(forKey: "genres") as? Data,
@@ -53,13 +51,12 @@ struct Show: Codable {
         case posterPath = "poster_path"
         case videoPath
         case backdrop = "backdrop_path"
-        case title = "name"
-        case releaseDate = "first_air_date"
+        case title
+        case releaseDate = "release_date"
         case rating = "vote_average"
         case voteCount = "vote_count"
         case overview
         case genres = "genre_ids"
-        case countryOfOrigin = "origin_country"
         case originalLanguage = "original_language"
     }
 }
