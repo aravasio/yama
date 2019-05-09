@@ -46,7 +46,7 @@
             </objects>
             <point key="canvasLocation" x="-857" y="-736"/>
         </scene>
-        <!--TV Movies-->
+        <!--Movies-->
         <scene sceneID="N4m-2o-0n0">
             <objects>
                 <viewController id="Iac-sL-yO1" customClass="MoviesListViewController" customModule="yama" customModuleProvider="target" sceneMemberID="viewController">
@@ -138,7 +138,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qwc-UL-UPy"/>
                     </view>
-                    <navigationItem key="navigationItem" title="TV Movies" id="2H0-Kr-Q5h">
+                    <navigationItem key="navigationItem" title="Movies" id="2H0-Kr-Q5h">
                         <barButtonItem key="leftBarButtonItem" image="searchIcon" id="Tqu-om-R4h">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -257,7 +257,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapWatchVide:" destination="LcI-Zh-JWa" eventType="touchUpInside" id="bEB-Xe-IH1"/>
+                                            <action selector="didTapWatchVideo:" destination="LcI-Zh-JWa" eventType="touchUpInside" id="6Ar-EQ-HVl"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -44,7 +44,6 @@ class DatabaseManager {
         newMovie.setValue(movie.id, forKey: "id")
         newMovie.setValue(movie.title, forKey: "title")
         newMovie.setValue(movie.posterPath, forKey: "posterPath")
-        newMovie.setValue(movie.videoPath, forKey: "videoPath")
         newMovie.setValue(movie.overview, forKey: "overview")
         newMovie.setValue(movie.releaseDate, forKey: "releaseDate")
         newMovie.setValue(movie.backdrop, forKey: "backdrop")

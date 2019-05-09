@@ -11,7 +11,6 @@ import Foundation
 struct Movie: Codable {
     let id: Int!
     let posterPath: String?
-    let videoPath: String?
     let backdrop: String
     let title: String
     let releaseDate: String
@@ -29,7 +28,6 @@ struct Movie: Codable {
     
         self.id = id
         self.posterPath = data.value(forKey: "posterPath") as? String ?? ""
-        self.videoPath = data.value(forKey: "videoPath") as? String ?? ""
         self.backdrop = data.value(forKey: "backdrop") as? String ?? ""
         self.title = data.value(forKey: "title") as? String ?? ""
         self.releaseDate = data.value(forKey: "releaseDate") as? String ?? ""
@@ -49,7 +47,6 @@ struct Movie: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case posterPath = "poster_path"
-        case videoPath
         case backdrop = "backdrop_path"
         case title
         case releaseDate = "release_date"

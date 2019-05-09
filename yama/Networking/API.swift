@@ -24,16 +24,30 @@ class API {
     
     
     /// Production providers. It provides no debug info on responses and is, thus, lean-oriented.
-    fileprivate static let tvMoviesProvider = MoyaProvider<MovieType>()
-    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>()
-    
+    fileprivate static let moviesProvider = MoyaProvider<MovieType>()
+    fileprivate static let genresProvider = MoyaProvider<GenreType>()
+    fileprivate static let videosProvider = MoyaProvider<VideoType>()
     
     /**
      Extremely verbose providers for debugging purposes.
      Highly adviced not to use this one unless you ought to debug something or are curious what/how it works.
      */
-//    fileprivate static let tvMoviesProvider = MoyaProvider<MovieType>(plugins: [NetworkLoggerPlugin(verbose: true)])
-//    fileprivate static let tvGenresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let moviesProvider = MoyaProvider<MovieType>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let genresProvider = MoyaProvider<GenreApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
+//    fileprivate static let videosProvider = MoyaProvider<VideoType>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    
+    
+    /**
+     Fetch the most popular movies.
+     
+     - Parameters:
+     - completion: code to be executed on a succesful request.
+     */
+    static func getTrailers(for movieId: Int, completion: @escaping ([Video]) -> ()) {
+        API.fetch(provider: videosProvider, endpoint: .list(movieId: movieId), returnType: APIVideoResults.self, completion: { result in
+            completion(result.videos)
+        })
+    }
     
     
     /**
@@ -43,7 +57,7 @@ class API {
          - completion: code to be executed on a succesful request.
      */
     static func getPopularMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
-        API.fetch(provider: tvMoviesProvider, endpoint: .popular(page: page), returnType: APIMovieResults.self, completion: { result in
+        API.fetch(provider: moviesProvider, endpoint: .popular(page: page), returnType: APIMovieResults.self, completion: { result in
             completion(result.movies)
         })
     }
@@ -57,7 +71,7 @@ class API {
      - completion: code to be executed on a succesful request.
      */
     static func getTopRatedMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
-        API.fetch(provider: tvMoviesProvider, endpoint: .topRated(page: page), returnType: APIMovieResults.self, completion: { result in
+        API.fetch(provider: moviesProvider, endpoint: .topRated(page: page), returnType: APIMovieResults.self, completion: { result in
             completion(result.movies)
         })
     }
@@ -71,20 +85,20 @@ class API {
      - completion: code to be executed on a succesful request.
      */
     static func getUpcomingMovies(page: Int, completion: @escaping ([Movie]) -> ()) {
-        API.fetch(provider: tvMoviesProvider, endpoint: .upcoming(page: page), returnType: APIMovieResults.self, completion: { result in
+        API.fetch(provider: moviesProvider, endpoint: .upcoming(page: page), returnType: APIMovieResults.self, completion: { result in
             completion(result.movies)
         })
     }
     
     
     /**
-     Fetch all genres for TV Movies from TMDb.
+     Fetch all genres for Movies from TMDb.
      
      - Parameters:
          - completion: code to be executed on a successful request.
      */
     static func getGenres(completion: @escaping ([Genre]) -> ()) {
-        API.fetch(provider: tvGenresProvider, endpoint: .list, returnType: APIGenresResults.self, completion: {
+        API.fetch(provider: genresProvider, endpoint: .list, returnType: APIGenresResults.self, completion: {
             completion($0.genres)
         })
     }

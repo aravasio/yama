@@ -41,25 +41,35 @@ class MovieDetailsViewController: UIViewController {
     let maxWidth: CGFloat = 182
     
     fileprivate var movie: Movie!
-    
+    fileprivate var videos: [Video] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tintView.backgroundColor = .backgroundBlack
         
-        trailerButton.isHidden = movie.videoPath?.isEmpty ?? true
-        
         backButton.layer.cornerRadius = backButton.frame.width / 2
         backButton.backgroundColor = .backgroundBlack
         
         configureLabels()
         configurePoster()
+        fetchTrailers()
         
         descriptionLabel.text = movie.overview
         scrollView.delegate = self
     }
     
+    private func fetchTrailers() {
+        trailerButton.isHidden = true
+        DataProvider.getTrailers(for: movie.id, completion: { [weak self] videos in
+            guard let wSelf = self else { return }
+            
+            wSelf.videos = videos
+            if !videos.isEmpty {
+                wSelf.trailerButton.isHidden = false
+            }
+        })
+    }
     
     private func configureLabels() {
         titleLabel.text = movie.title
@@ -115,9 +125,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     
-    @IBAction func didTapWatchVide(_ sender: UIButton) {
-        if let path = movie.videoPath {
-            let vc = YoutubeVideoViewController.create(with: path)
+    
+    /// TODO: Note: ALL movies I was able to fetch did not return a frigging video. Literally NOT. ONE. MOVIE.
+    @IBAction func didTapWatchVideo(_ sender: UIButton) {
+        if let video = videos.first, let key = video.key {
+            let vc = YoutubeVideoViewController.create(with: key)
             self.present(vc, animated: true, completion: nil)
         }
     }

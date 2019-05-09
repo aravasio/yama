@@ -21,8 +21,27 @@ class DataProvider {
     /// My database manager. I use it to interface with CoreData.
     fileprivate static let dbm = DatabaseManager()
     
+    
     /**
-     Fetch all genres for TV Movies. If it's not connected to the internet, it will fetch data (if any available)
+     Fetch all trailers for a given Movie ID. If it's not connected to the internet, then returns an empty array.
+     
+     - Parameters:
+     - completion: code to be executed on a successful request.
+     */
+    
+    static func getTrailers(for movieId: Int, completion: @escaping ([Video]) -> ()) {
+        if isConnected {
+            API.getTrailers(for: movieId, completion: { videos in
+                completion(videos)
+            })
+        } else {
+            completion([])
+        }
+    }
+    
+    
+    /**
+     Fetch all genres for Movies. If it's not connected to the internet, it will fetch data (if any available)
      from CoreData.
      
      - Parameters:

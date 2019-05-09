@@ -1,30 +1,30 @@
 //
-//  MockApi.swift
+//  VideoApi.swift
 //  yama
 //
-//  Created by Alejandro Ravasio on 02/02/2019.
+//  Created by Alejandro Ravasio on 09/05/2019.
 //  Copyright © 2019 Alejandro Ravasio. All rights reserved.
 //
 
 import Foundation
 import Moya
 
-enum GenreType: TargetType {
+enum VideoType: TargetType {
     
     /// All cases are entirely experimental in nature. I'm messing around with different TMDb endpoints to
     /// check out which ones I'm more comfortable with for the purpose of the project.
     /// They might be implemented as endpoints, but not necessarily consumed anywhere else in the app.
-    case list
+    case list(movieId: Int)
     
     var baseURL: URL {
-        guard let url = URL(string: "https://api.themoviedb.org/3/genre/movie") else { fatalError("baseURL could not be configured") }
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie") else { fatalError("baseURL could not be configured") }
         return url
     }
     
     var path: String {
         switch self {
-        case .list:
-            return "/list"
+        case .list(let id):
+            return "/\(id)/videos"
         }
     }
     
