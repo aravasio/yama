@@ -187,8 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */,
-				57608C2A22828AE500597266 /* Provider */,
 				572F39A822067252005BFC3A /* Helpers */,
+				57608C2A22828AE500597266 /* Provider */,
 				575F9AAF220657CA0016E35E /* UI */,
 				575F9AA822063CE20016E35E /* Models */,
 				575F9AA02206336B0016E35E /* Resources */,
