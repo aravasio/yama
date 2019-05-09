@@ -102,6 +102,12 @@ class ShowsListViewController: UIViewController {
     // Tracks when the segmented control changes value
     @IBAction func searchTypeChanged(_ sender: Any) {
         selectedFilter = searchSegmentedControl.selectedSegmentIndex == 0 ? .byTitle : .byGenre
+        popularShowsCollectionView.reloadData()
+    }
+    
+    
+    @objc private func searchFieldChanged() {
+        popularShowsCollectionView.reloadData()
     }
     
     
@@ -111,11 +117,6 @@ class ShowsListViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
-    }
-    
-    
-    @objc private func searchFieldChanged() {
-        popularShowsCollectionView.reloadData()
     }
     
     
