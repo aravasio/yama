@@ -64,6 +64,11 @@ class ShowsListViewController: UIViewController {
                     }
                     
                     // Then we filter all popular shows whose genres partially contain the filtered Genre IDs we just got.
+                    //
+                    // This works because there are actually two versions of `contains`. One takes a closure in order to check each
+                    // element against a predicate, and the other just compares an element directly.
+                    // In this case, `$0.genre` is using the closure version, and `filteredGenres` is using the element version.
+                    // And that is the reason you can pass a contains function into another contains function.
                     let filteredShows = popularShows.filter { $0.genres.contains(where: filteredGenres.contains) }
                     
                     return filteredShows
