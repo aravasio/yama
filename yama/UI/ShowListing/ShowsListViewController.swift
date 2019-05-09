@@ -57,6 +57,7 @@ class ShowsListViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         searchFieldHeight.constant = 0
+        searchField.placeholder = "show name"
         searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
         
         configurePopularShowsView()
@@ -72,7 +73,8 @@ class ShowsListViewController: UIViewController {
     
     
     @IBAction func didTapSearch(_ sender: Any) {
-        searchFieldHeight.constant = 30
+        searchFieldHeight.constant = searchFieldHeight.constant == 0 ? 30 : 0
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
@@ -104,7 +106,7 @@ extension ShowsListViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return popularShows.count
+        return filteredPopularShows.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
