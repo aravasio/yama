@@ -10,5 +10,5 @@ target 'yama' do
   pod 'Kingfisher'
   pod 'UIImageColors'
   pod 'ReachabilitySwift'
-
+  pod "YoutubePlayer-in-WKWebView", "~> 0.3.0"
 end
