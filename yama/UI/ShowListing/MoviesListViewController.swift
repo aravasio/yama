@@ -111,6 +111,10 @@ class MoviesListViewController: UIViewController {
         
         configureSearchBar()
         configurePopularMoviesView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         DataProvider.getGenres() { genres in
             GenresManager.shared.genres = genres
