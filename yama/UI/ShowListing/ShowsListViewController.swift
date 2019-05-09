@@ -10,11 +10,11 @@ import UIKit
 import Kingfisher
 import CoreData
 
-
 /// This VC displays a list of shows that are provided to it by the DataProvider
 class ShowsListViewController: UIViewController {
     
-    @IBOutlet weak var searchFieldHeight: NSLayoutConstraint!
+    @IBOutlet weak var searchContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var searchSegmentedControl: UISegmentedControl!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var popularLabel: UILabel!
     @IBOutlet weak var popularShowsCollectionView: UICollectionView!
@@ -23,6 +23,7 @@ class ShowsListViewController: UIViewController {
             activityIndicator.hidesWhenStopped = true
         }
     }
+    
 
     // Complete list of shows given by the DataProvider
     fileprivate var popularShows: [Show] = [] {
@@ -35,31 +36,52 @@ class ShowsListViewController: UIViewController {
             }
         }
     }
-
+    
+    fileprivate var selectedFilter: FilterType = .byTitle
+    
     // Computed variable defined by filtering the Shows array based on the searchField text.
     // If the title contains the text in the search field, it's a match.
     fileprivate var filteredPopularShows: [Show] {
         get {
             if let text = searchField.text?.lowercased(), !text.isEmpty {
-                let results = popularShows.filter { $0.title.lowercased().contains(text) }
-                return results
+                
+                switch selectedFilter {
+                case .byTitle:
+                    // We just need to filter by lowercased title.
+                    return popularShows.filter { $0.title.lowercased().contains(text) }
+                    
+                    
+                case .byGenre:
+                    
+                    // First we get all the Genres whose lowercased name matches the one we're writing.
+                    // We save the IDs of those genres.
+                    let filteredGenres = GenresManager.shared.genres.compactMap { genre -> Int? in
+                        if genre.name.lowercased().contains(text) {
+                            return genre.id
+                        } else {
+                            return nil
+                        }
+                    }
+                    
+                    // Then we filter all popular shows whose genres partially contain the filtered Genre IDs we just got.
+                    let filteredShows = popularShows.filter { $0.genres.contains(where: filteredGenres.contains) }
+                    
+                    return filteredShows
+                }
             } else {
                 return popularShows
             }
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
-        searchFieldHeight.constant = 0
-        searchField.placeholder = "show name"
-        searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
-        
+        configureSearchBar()
         configurePopularShowsView()
         
         DataProvider.getGenres() { genres in
@@ -71,9 +93,20 @@ class ShowsListViewController: UIViewController {
         }
     }
     
+    fileprivate func configureSearchBar() {
+        searchContainerHeight.constant = 0
+        searchField.placeholder = "show name"
+        searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
+    }
+    
+    // Tracks when the segmented control changes value
+    @IBAction func searchTypeChanged(_ sender: Any) {
+        selectedFilter = searchSegmentedControl.selectedSegmentIndex == 0 ? .byTitle : .byGenre
+    }
+    
     
     @IBAction func didTapSearch(_ sender: Any) {
-        searchFieldHeight.constant = searchFieldHeight.constant == 0 ? 30 : 0
+        searchContainerHeight.constant = searchContainerHeight.constant == 0 ? 60 : 0
         
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
@@ -131,4 +164,9 @@ extension ShowsListViewController: UICollectionViewDataSource, UICollectionViewD
         return 20
     }
     
+}
+
+enum FilterType {
+    case byTitle
+    case byGenre
 }
