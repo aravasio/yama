@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Model for the response format of TMDB for Genres.
 struct APIGenresResults: Codable {
     let genres: [Genre]
 }

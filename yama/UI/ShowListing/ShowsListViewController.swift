@@ -10,6 +10,8 @@ import UIKit
 import Kingfisher
 import CoreData
 
+
+/// This VC displays a list of shows that are provided to it by the DataProvider
 class ShowsListViewController: UIViewController {
     
     @IBOutlet weak var searchFieldHeight: NSLayoutConstraint!
@@ -22,6 +24,7 @@ class ShowsListViewController: UIViewController {
         }
     }
 
+    // Complete list of shows given by the DataProvider
     fileprivate var popularShows: [Show] = [] {
         didSet {
             if popularShows.isEmpty {
@@ -32,7 +35,9 @@ class ShowsListViewController: UIViewController {
             }
         }
     }
-    
+
+    // Computed variable defined by filtering the Shows array based on the searchField text.
+    // If the title contains the text in the search field, it's a match.
     fileprivate var filteredPopularShows: [Show] {
         get {
             if let text = searchField.text?.lowercased(), !text.isEmpty {
@@ -44,9 +49,10 @@ class ShowsListViewController: UIViewController {
         }
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
@@ -62,8 +68,8 @@ class ShowsListViewController: UIViewController {
                 self.popularShowsCollectionView.reloadData()
             }
         }
-        
     }
+    
     
     @IBAction func didTapSearch(_ sender: Any) {
         searchFieldHeight.constant = 30
@@ -72,9 +78,11 @@ class ShowsListViewController: UIViewController {
         })
     }
     
+    
     @objc private func searchFieldChanged() {
         popularShowsCollectionView.reloadData()
     }
+    
     
     private func configurePopularShowsView() {
         popularShowsCollectionView.delegate = self

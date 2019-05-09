@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -106,6 +106,7 @@
 			children = (
 				572F39A922067268005BFC3A /* UIColor+Extension.swift */,
 				572F39AF220753D4005BFC3A /* GenresManager.swift */,
+				57608C2822825EBA00597266 /* DatabaseManager.swift */,
 				572F39B72207B17D005BFC3A /* Constants.swift */,
 				572F39B92207BAD6005BFC3A /* UIImage+Extension.swift */,
 			);
@@ -136,8 +137,6 @@
 				575F9AA422063BFD0016E35E /* APIShowResults.swift */,
 				572F39B12207555E005BFC3A /* APIGenreResults.swift */,
 				575F9AA622063CB00016E35E /* VideoResults.swift */,
-				57608C2822825EBA00597266 /* DatabaseManager.swift */,
-				578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 		579E29F62206281E0016E3CC /* yama */ = {
 			isa = PBXGroup;
 			children = (
+				578725FD22823E7B000C7B1E /* ModelData.xcdatamodeld */,
 				57608C2A22828AE500597266 /* Provider */,
 				572F39A822067252005BFC3A /* Helpers */,
 				575F9AAF220657CA0016E35E /* UI */,

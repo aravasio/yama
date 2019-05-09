@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+// Video model for Videos. WIP.
 struct VideoResults: Decodable {
     let details: [VideoKey]
     private enum CodingKeys: String, CodingKey {

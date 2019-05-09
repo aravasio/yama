@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
+/// This ViewCell is used for the show listing.
 class PopularShowsCollectionCell: UICollectionViewCell {
     
     static let identifier = "PopularShowsCollectionCell"
@@ -22,6 +23,8 @@ class PopularShowsCollectionCell: UICollectionViewCell {
     
     var show: Show!
     
+    // In traditional MVVM fashion, we use a `configure` function to pass the view all the data
+    // it needs to configure UI aspects.
     func configure(for show: Show) {
         self.show = show
         self.backgroundColor = .backgroundBlack

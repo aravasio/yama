@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import Kingfisher
 
+
+/// Show Details VC. It's used to display more details on the received Show.
 class ShowDetailsViewController: UIViewController {
+    
     static let identifier = "showDetailsViewControllerId"
 
     @IBOutlet weak var posterHeight: NSLayoutConstraint!
@@ -39,6 +42,7 @@ class ShowDetailsViewController: UIViewController {
     let maxWidth: CGFloat = 182
     
     fileprivate var show: Show!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +77,9 @@ class ShowDetailsViewController: UIViewController {
         originalLanguageTitleLabel.attributedText = NSAttributedString(string: "Original language:", attributes: strokeTextAttributes)
         countryOfOriginTitleLabel.attributedText = NSAttributedString(string: "Country of origin:", attributes: strokeTextAttributes)
     }
+    
+    
+    //Fetch a poster or backdrop, get primary color from the image, apply noir filter.
     private func configurePoster() {
         guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w342\(show.posterPath ?? show.backdrop)") else { return }
 
@@ -99,6 +106,7 @@ class ShowDetailsViewController: UIViewController {
         }
     }
     
+    
     private func makeAndUseNoirImage(from image: UIImage) {
         let noir = image.noir
         DispatchQueue.main.async {
@@ -107,10 +115,21 @@ class ShowDetailsViewController: UIViewController {
         }
     }
     
+    
     @IBAction func didTapBack(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    /**
+     I use `create` as a mechanism for Dependency Injection. I send the function the required data for a valid VC,
+     and it returns an instantiated VC that I only need to push forward.
+     
+     - Parameters:
+         - show: The Show we want to present.
+     
+     - Returns: A ShowDetailsVC.
+     */
     class func create(for show: Show) -> ShowDetailsViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: ShowDetailsViewController.identifier) as! ShowDetailsViewController

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Model for the response format of TMDB for Shows.
 struct APIShowResults: Codable {
     let page: Int
     let shows: [Show]
