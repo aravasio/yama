@@ -113,7 +113,7 @@ class DataProvider {
     static func getUpcomingMovies(completion: @escaping ([Movie]) -> ()) {
         if isConnected {
             // Remote call
-            API.getTopRatedMovies(page: 1, completion:  { movies in
+            API.getUpcomingMovies(page: 1, completion:  { movies in
                 completion(movies)
                 DataProvider.dbm.store(movies: movies, for: "Upcoming")
             })

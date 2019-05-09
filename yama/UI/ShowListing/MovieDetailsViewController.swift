@@ -79,8 +79,9 @@ class MovieDetailsViewController: UIViewController {
         
         
         let strokeTextAttributes: [NSAttributedString.Key : Any] = [
+            .foregroundColor : UIColor.black,
             .strokeColor : UIColor.white,
-            .strokeWidth : 3.0,
+            .strokeWidth : -3.0,
             ]
         
         overviewTitleLabel.attributedText = NSAttributedString(string: "Overview:", attributes: strokeTextAttributes)

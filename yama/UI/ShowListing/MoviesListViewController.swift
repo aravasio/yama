@@ -16,7 +16,6 @@ class MoviesListViewController: UIViewController {
     @IBOutlet weak var searchContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var searchSegmentedControl: UISegmentedControl!
     @IBOutlet weak var searchField: UITextField!
-    @IBOutlet weak var popularLabel: UILabel!
     @IBOutlet weak var popularMoviesCollectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
         didSet {
@@ -111,10 +110,6 @@ class MoviesListViewController: UIViewController {
         
         configureSearchBar()
         configurePopularMoviesView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         DataProvider.getGenres() { genres in
             GenresManager.shared.genres = genres
@@ -125,11 +120,13 @@ class MoviesListViewController: UIViewController {
         }
     }
     
+    
     fileprivate func configureSearchBar() {
         searchContainerHeight.constant = 0
         searchField.placeholder = "movie name"
         searchField.addTarget(self, action: #selector(searchFieldChanged), for: .editingChanged)
     }
+    
     
     // Tracks when the segmented control changes value
     @IBAction func searchTypeChanged(_ sender: Any) {
@@ -199,6 +196,8 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
     
 }
 
+
+// A Simple enum for the type of filtering we want to apply to the search function.
 enum FilterType {
     case byTitle
     case byGenre
