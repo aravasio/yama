@@ -69,6 +69,4 @@ class PopularMoviesCollectionCell: UICollectionViewCell {
             categoryLabel.isHidden = true
         }
     }
-    
-    
 }
