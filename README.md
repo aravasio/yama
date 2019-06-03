@@ -1,7 +1,7 @@
 # yama
 Yet Another Mobile App
 
-## Capas de la app:
+## App layering:
 
 ### Data Models:
 
@@ -38,13 +38,3 @@ Caching was done using CoreData. We simply store the received, valid responses a
 - DatabaseManager: In charge of providing an interface for easy store/load operations.
 
 - DataProvider: Manager for determining where to get data from. If there's no internet access, it aims for the data in CoreData, otherwise makes remote requests through API. 
-
-## What is the Single Responsibility Principle? What is its' purpose?
- The single responsibility principle is a computer programming principle that states that every module, class, or function should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class.
-
- The idea behind it is that smaller-scope entities are inherently more rebust, are easier to test, matain and refactor/discard over time.
-
-
-## What are the indicators of 'good' or 'clean' code?
- To me, a good piece of code is one that's both clear and concise. It's as expressive as possible about its intent and scope, and tries to keep up with detailed documentation within the code itself about usability. It handles as little state as reasonably possible, and probably makes great use of stuff such as Dependency Injection or other "low mutability" strategies to keep data integrity across the board.
-
