@@ -30,8 +30,10 @@ extension UIImage {
     
     /// UIImageColors lib don't seem to provide an extension. This is it.
     func getPredominantColors(_ completion: @escaping (UIImageColors) -> Void) {
-        self.getColors() {
-            completion($0)
+        self.getColors() { color in
+            if let c = color {
+                completion(c)
+            }
         }
     }
 }

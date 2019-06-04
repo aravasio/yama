@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "yama/UI/ShowListing/MoviesListViewController.swift"
-            timestampString = "579131094.700635"
+            timestampString = "580086727.411652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
             endingLineNumber = "95"
-            landmarkName = "genreToFetch"
+            landmarkName = "categoryToFetch"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "yama/UI/ShowListing/MoviesListViewController.swift"
-            timestampString = "579131094.700727"
+            timestampString = "580086727.411786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "genreToFetch"
+            landmarkName = "categoryToFetch"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,14 +1,14 @@
 PODS:
-  - Alamofire (4.8.1)
-  - Kingfisher (5.1.0)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya/Core (12.0.1):
+  - Alamofire (4.8.2)
+  - Kingfisher (5.5.0)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 4.0)
+    - Result (~> 4.1)
   - ReachabilitySwift (4.3.1)
   - Result (4.1.0)
-  - UIImageColors (2.0.1)
+  - UIImageColors (2.1.0)
   - YoutubePlayer-in-WKWebView (0.3.0)
 
 DEPENDENCIES:
@@ -29,12 +29,12 @@ SPEC REPOS:
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  UIImageColors: c83669aff7ceb55a3b3f2c398f3b5c14632a267b
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   YoutubePlayer-in-WKWebView: 17a33b2fa619d357c9ddd763942ce556660facae
 
 PODFILE CHECKSUM: 3db675db46f1ab0c6bb787f7806fda8a46a42597
